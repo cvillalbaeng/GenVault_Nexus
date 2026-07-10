@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +58,11 @@
     <Compile Include="ucEmergencia.cs" />
     <Compile Include="ucEmergencia.Designer.cs">
       <DependentUpon>ucEmergencia.cs</DependentUpon>
+    <Compile Include="ucMonitorTI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucMonitorTI.Designer.cs">
+      <DependentUpon>ucMonitorTI.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -73,6 +79,8 @@
     </Compile>
     <EmbeddedResource Include="ucEmergencia.resx">
       <DependentUpon>ucEmergencia.cs</DependentUpon>
+    <EmbeddedResource Include="ucMonitorTI.resx">
+      <DependentUpon>ucMonitorTI.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
