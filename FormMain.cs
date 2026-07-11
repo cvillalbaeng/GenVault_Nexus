@@ -56,8 +56,13 @@ namespace GenVault_Nexus
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCiberseguridad_Click(object sender, EventArgs e)
         {
+            lblCabecera.Text = "GenVault > Ciberseguridad y Accesos";
+                   
+            pnlContenedor.Controls.Clear();
+            // TODO: Reemplazar esta línea anterior cuando entreguen el módudulo e inyectar la siguiente línea comentada:
+            // MostrarModulo(new ucCiberseguridad());
 
         }
 
@@ -85,14 +90,60 @@ namespace GenVault_Nexus
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnMonitor_Click(object sender, EventArgs e)
         {
+            lblCabecera.Text = "GenVault > Monitor de Infraestructura TI";
             MostrarModulo(new ucMonitorTI());
+         
         }
 
         private void btnEmergencia_Click(object sender, EventArgs e)
         {
+            lblCabecera.Text = "GenVault > Protocolos de Emergencia";
             MostrarModulo(new ucEmergencia());
+           
+        }
+
+        private void timeReloj_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnBioinformatica_Click(object sender, EventArgs e)
+        {
+            lblCabecera.Text = "GenVault > Bioinformática";
+            pnlContenedor.Controls.Clear();
+            // TODO: Reemplazar esta línea anterior cuando entreguen el módudulo e inyectar la siguiente línea comentada:
+            // MostrarModulo(new ucBioinformatica());
+        }
+
+        private void btnBaseDeDatos_Click(object sender, EventArgs e)
+        {
+            lblCabecera.Text = "GenVault > Base de Datos";
+            pnlContenedor.Controls.Clear();
+            // TODO: Reemplazar esta línea anterior cuando entreguen el módudulo e inyectar la siguiente línea comentada:
+            // MostrarModulo(new ucBaseDatos());
+        }
+
+        private void btnTelemetria_Click(object sender, EventArgs e)
+        {
+            lblCabecera.Text = "GenVault > Unidad de Telemetría";
+            pnlContenedor.Controls.Clear();
+            // TODO: Reemplazar esta línea anterior cuando entreguen el módudulo e inyectar la siguiente línea comentada:
+            // MostrarModulo(new ucTelemetria());
+        }
+
+        private void btnLogistica_Click(object sender, EventArgs e)
+        {
+            lblCabecera.Text = "GenVault > Logística e Inventario";
+            pnlContenedor.Controls.Clear();
+            // TODO: Reemplazar esta línea anterior cuando entreguen el módudulo e inyectar la siguiente línea comentada:
+            // MostrarModulo(new ucLogistica());
         }
     }
 }
