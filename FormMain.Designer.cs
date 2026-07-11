@@ -28,23 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnEmergencia = new System.Windows.Forms.Button();
+            this.btnMonitor = new System.Windows.Forms.Button();
+            this.btnBaseDeDatos = new System.Windows.Forms.Button();
+            this.btnBioinformatica = new System.Windows.Forms.Button();
+            this.btnLogistica = new System.Windows.Forms.Button();
+            this.btnCiberseguridad = new System.Windows.Forms.Button();
             this.btnTelemetria = new System.Windows.Forms.Button();
             this.pnlContenedor = new System.Windows.Forms.Panel();
-            this.btnEmergencia = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCabecera = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timeReloj = new System.Windows.Forms.Timer(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pnlHeader.SuspendLayout();
             this.pnlMenu.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -56,9 +67,9 @@
             this.pnlHeader.Controls.Add(this.label1);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1280, 32);
+            this.pnlHeader.Size = new System.Drawing.Size(1280, 28);
             this.pnlHeader.TabIndex = 0;
             this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHeader_Paint);
             this.pnlHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlHeader_MouseDown);
@@ -74,9 +85,9 @@
             this.btnMinimizar.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnMinimizar.ForeColor = System.Drawing.Color.White;
             this.btnMinimizar.Location = new System.Drawing.Point(1175, 0);
-            this.btnMinimizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMinimizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnMinimizar.Name = "btnMinimizar";
-            this.btnMinimizar.Size = new System.Drawing.Size(35, 32);
+            this.btnMinimizar.Size = new System.Drawing.Size(35, 28);
             this.btnMinimizar.TabIndex = 3;
             this.btnMinimizar.Text = "0";
             this.btnMinimizar.UseVisualStyleBackColor = false;
@@ -92,9 +103,9 @@
             this.btnMaximizar.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnMaximizar.ForeColor = System.Drawing.Color.White;
             this.btnMaximizar.Location = new System.Drawing.Point(1210, 0);
-            this.btnMaximizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMaximizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnMaximizar.Name = "btnMaximizar";
-            this.btnMaximizar.Size = new System.Drawing.Size(35, 32);
+            this.btnMaximizar.Size = new System.Drawing.Size(35, 28);
             this.btnMaximizar.TabIndex = 2;
             this.btnMaximizar.Text = "1";
             this.btnMaximizar.UseVisualStyleBackColor = true;
@@ -110,9 +121,9 @@
             this.btnCerrar.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnCerrar.ForeColor = System.Drawing.Color.White;
             this.btnCerrar.Location = new System.Drawing.Point(1245, 0);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(35, 32);
+            this.btnCerrar.Size = new System.Drawing.Size(35, 28);
             this.btnCerrar.TabIndex = 1;
             this.btnCerrar.Text = "r";
             this.btnCerrar.UseVisualStyleBackColor = true;
@@ -135,136 +146,18 @@
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.pnlMenu.Controls.Add(this.btnEmergencia);
-            this.pnlMenu.Controls.Add(this.button6);
-            this.pnlMenu.Controls.Add(this.button5);
-            this.pnlMenu.Controls.Add(this.button4);
-            this.pnlMenu.Controls.Add(this.button3);
-            this.pnlMenu.Controls.Add(this.button2);
-            this.pnlMenu.Controls.Add(this.button1);
+            this.pnlMenu.Controls.Add(this.btnMonitor);
+            this.pnlMenu.Controls.Add(this.btnBaseDeDatos);
+            this.pnlMenu.Controls.Add(this.btnBioinformatica);
+            this.pnlMenu.Controls.Add(this.btnLogistica);
+            this.pnlMenu.Controls.Add(this.btnCiberseguridad);
             this.pnlMenu.Controls.Add(this.btnTelemetria);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlMenu.Location = new System.Drawing.Point(0, 32);
-            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMenu.Location = new System.Drawing.Point(0, 28);
+            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(250, 688);
+            this.pnlMenu.Size = new System.Drawing.Size(250, 692);
             this.pnlMenu.TabIndex = 1;
-            // 
-            // button6
-            // 
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(9, 265);
-            this.button6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(216, 42);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "PROTOCOLOS DE EMERGENCIA";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(7, 155);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button5.Size = new System.Drawing.Size(216, 42);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "MONITOR DE TI";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button4
-            // 
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(9, 110);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button4.Size = new System.Drawing.Size(216, 42);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "BASE DE DATOS";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(9, 64);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(216, 42);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "BIOINFORMÁTICA";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 323);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(216, 42);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "LÓGISTICA E INVENTARIO";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(9, 19);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(216, 42);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "CIBERSEGURIDAD Y LOGIN";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnTelemetria
-            // 
-            this.btnTelemetria.FlatAppearance.BorderSize = 0;
-            this.btnTelemetria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTelemetria.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTelemetria.ForeColor = System.Drawing.Color.White;
-            this.btnTelemetria.Location = new System.Drawing.Point(7, 210);
-            this.btnTelemetria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnTelemetria.Name = "btnTelemetria";
-            this.btnTelemetria.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnTelemetria.Size = new System.Drawing.Size(216, 42);
-            this.btnTelemetria.TabIndex = 0;
-            this.btnTelemetria.Text = "UNIDAD DE TELEMETRIA";
-            this.btnTelemetria.UseVisualStyleBackColor = true;
-            // 
-            // pnlContenedor
-            // 
-            this.pnlContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContenedor.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.pnlContenedor.Location = new System.Drawing.Point(250, 32);
-            this.pnlContenedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pnlContenedor.Name = "pnlContenedor";
-            this.pnlContenedor.Size = new System.Drawing.Size(1030, 688);
-            this.pnlContenedor.TabIndex = 2;
             // 
             // btnEmergencia
             // 
@@ -272,15 +165,204 @@
             this.btnEmergencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmergencia.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEmergencia.ForeColor = System.Drawing.Color.White;
-            this.btnEmergencia.Location = new System.Drawing.Point(11, 369);
+            this.btnEmergencia.Location = new System.Drawing.Point(11, 586);
             this.btnEmergencia.Margin = new System.Windows.Forms.Padding(2);
             this.btnEmergencia.Name = "btnEmergencia";
             this.btnEmergencia.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnEmergencia.Size = new System.Drawing.Size(216, 42);
+            this.btnEmergencia.Size = new System.Drawing.Size(216, 60);
             this.btnEmergencia.TabIndex = 7;
-            this.btnEmergencia.Text = "EMERGENCIAS";
+            this.btnEmergencia.Text = "🚨 PROTOCOLOS DE EMERGENCIA";
+            this.toolTip1.SetToolTip(this.btnEmergencia, "Panel de control de incendios y anulación manual del sistema Fail-Open de electro" +
+        "imanes");
             this.btnEmergencia.UseVisualStyleBackColor = true;
             this.btnEmergencia.Click += new System.EventHandler(this.btnEmergencia_Click);
+            // 
+            // btnMonitor
+            // 
+            this.btnMonitor.FlatAppearance.BorderSize = 0;
+            this.btnMonitor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMonitor.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMonitor.ForeColor = System.Drawing.Color.White;
+            this.btnMonitor.Location = new System.Drawing.Point(10, 276);
+            this.btnMonitor.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMonitor.Name = "btnMonitor";
+            this.btnMonitor.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnMonitor.Size = new System.Drawing.Size(216, 65);
+            this.btnMonitor.TabIndex = 5;
+            this.btnMonitor.Text = "🖥️  MONITOR DE INFRAESTRUCTURA TI";
+            this.toolTip1.SetToolTip(this.btnMonitor, "Monitoreo de tráfico y estado del Bio-Core Alpha");
+            this.btnMonitor.UseVisualStyleBackColor = true;
+            this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
+            // 
+            // btnBaseDeDatos
+            // 
+            this.btnBaseDeDatos.FlatAppearance.BorderSize = 0;
+            this.btnBaseDeDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBaseDeDatos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBaseDeDatos.ForeColor = System.Drawing.Color.White;
+            this.btnBaseDeDatos.Location = new System.Drawing.Point(11, 195);
+            this.btnBaseDeDatos.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBaseDeDatos.Name = "btnBaseDeDatos";
+            this.btnBaseDeDatos.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnBaseDeDatos.Size = new System.Drawing.Size(216, 42);
+            this.btnBaseDeDatos.TabIndex = 4;
+            this.btnBaseDeDatos.Text = "🗄️ BASE DE DATOS";
+            this.toolTip1.SetToolTip(this.btnBaseDeDatos, "Gestión centralizada (CRUD) del núcleo y registro de especímenes de prueba");
+            this.btnBaseDeDatos.UseVisualStyleBackColor = true;
+            this.btnBaseDeDatos.Click += new System.EventHandler(this.btnBaseDeDatos_Click);
+            // 
+            // btnBioinformatica
+            // 
+            this.btnBioinformatica.FlatAppearance.BorderSize = 0;
+            this.btnBioinformatica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBioinformatica.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBioinformatica.ForeColor = System.Drawing.Color.White;
+            this.btnBioinformatica.Location = new System.Drawing.Point(11, 124);
+            this.btnBioinformatica.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBioinformatica.Name = "btnBioinformatica";
+            this.btnBioinformatica.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnBioinformatica.Size = new System.Drawing.Size(216, 42);
+            this.btnBioinformatica.TabIndex = 3;
+            this.btnBioinformatica.Text = "🧬 BIOINFORMÁTICA";
+            this.toolTip1.SetToolTip(this.btnBioinformatica, "Simulación del Programación de Algoritmos de Mutación (PAM) y análisis genómico");
+            this.btnBioinformatica.UseVisualStyleBackColor = true;
+            this.btnBioinformatica.Click += new System.EventHandler(this.btnBioinformatica_Click);
+            // 
+            // btnLogistica
+            // 
+            this.btnLogistica.FlatAppearance.BorderSize = 0;
+            this.btnLogistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogistica.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogistica.ForeColor = System.Drawing.Color.White;
+            this.btnLogistica.Location = new System.Drawing.Point(11, 488);
+            this.btnLogistica.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogistica.Name = "btnLogistica";
+            this.btnLogistica.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnLogistica.Size = new System.Drawing.Size(216, 59);
+            this.btnLogistica.TabIndex = 2;
+            this.btnLogistica.Text = "📦 LÓGISTICA E INVENTARIO";
+            this.toolTip1.SetToolTip(this.btnLogistica, "Control de stock de reactivos e insumos con generación automática de órdenes de c" +
+        "ompra");
+            this.btnLogistica.UseVisualStyleBackColor = true;
+            this.btnLogistica.Click += new System.EventHandler(this.btnLogistica_Click);
+            // 
+            // btnCiberseguridad
+            // 
+            this.btnCiberseguridad.FlatAppearance.BorderSize = 0;
+            this.btnCiberseguridad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCiberseguridad.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCiberseguridad.ForeColor = System.Drawing.Color.White;
+            this.btnCiberseguridad.Location = new System.Drawing.Point(11, 31);
+            this.btnCiberseguridad.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCiberseguridad.Name = "btnCiberseguridad";
+            this.btnCiberseguridad.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnCiberseguridad.Size = new System.Drawing.Size(216, 66);
+            this.btnCiberseguridad.TabIndex = 1;
+            this.btnCiberseguridad.Text = "🔐 CIBERSEGURIDAD Y ACCESOS";
+            this.btnCiberseguridad.UseVisualStyleBackColor = true;
+            this.btnCiberseguridad.Click += new System.EventHandler(this.btnCiberseguridad_Click);
+            // 
+            // btnTelemetria
+            // 
+            this.btnTelemetria.FlatAppearance.BorderSize = 0;
+            this.btnTelemetria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTelemetria.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTelemetria.ForeColor = System.Drawing.Color.White;
+            this.btnTelemetria.Location = new System.Drawing.Point(11, 373);
+            this.btnTelemetria.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTelemetria.Name = "btnTelemetria";
+            this.btnTelemetria.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnTelemetria.Size = new System.Drawing.Size(216, 76);
+            this.btnTelemetria.TabIndex = 0;
+            this.btnTelemetria.Text = "🌡️ UNIDAD DE TELEMETRIA";
+            this.toolTip1.SetToolTip(this.btnTelemetria, "Vigilancia de sensores SNMP (temperatura/humedad) y estado de contención en Unida" +
+        "des A, B y C");
+            this.btnTelemetria.UseVisualStyleBackColor = true;
+            this.btnTelemetria.Click += new System.EventHandler(this.btnTelemetria_Click);
+            // 
+            // pnlContenedor
+            // 
+            this.pnlContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContenedor.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.pnlContenedor.Location = new System.Drawing.Point(250, 28);
+            this.pnlContenedor.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlContenedor.Name = "pnlContenedor";
+            this.pnlContenedor.Size = new System.Drawing.Size(1030, 692);
+            this.pnlContenedor.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.pnlContenedor, "Control de acceso RFID y asignación de roles corporativos");
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblCabecera);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(250, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1030, 19);
+            this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // lblCabecera
+            // 
+            this.lblCabecera.AutoSize = true;
+            this.lblCabecera.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCabecera.ForeColor = System.Drawing.Color.Cyan;
+            this.lblCabecera.Location = new System.Drawing.Point(4, 1);
+            this.lblCabecera.Name = "lblCabecera";
+            this.lblCabecera.Size = new System.Drawing.Size(268, 17);
+            this.lblCabecera.TabIndex = 0;
+            this.lblCabecera.Text = "GetValultNexusERP > Dashboard Principal";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel3,
+            this.lblHora});
+            this.statusStrip1.Location = new System.Drawing.Point(250, 698);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1030, 22);
+            this.statusStrip1.TabIndex = 0;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.Cyan;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(299, 17);
+            this.toolStripStatusLabel1.Spring = true;
+            this.toolStripStatusLabel1.Text = "Usuario: Esperando inicio de sesión...";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Cyan;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(299, 17);
+            this.toolStripStatusLabel2.Spring = true;
+            this.toolStripStatusLabel2.Text = "Servidor: Bio-Core Alpha (Desconectado)";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.ForeColor = System.Drawing.Color.Cyan;
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(299, 17);
+            this.toolStripStatusLabel3.Spring = true;
+            this.toolStripStatusLabel3.Text = "Módulo Activo: Ninguno";
+            // 
+            // lblHora
+            // 
+            this.lblHora.ForeColor = System.Drawing.Color.Cyan;
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(118, 17);
+            this.lblHora.Text = "toolStripStatusLabel4";
+            // 
+            // timeReloj
+            // 
+            this.timeReloj.Enabled = true;
+            this.timeReloj.Interval = 1000;
+            this.timeReloj.Tick += new System.EventHandler(this.timeReloj_Tick);
             // 
             // FormMain
             // 
@@ -288,18 +370,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlContenedor);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.pnlMenu.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -311,15 +400,23 @@
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Panel pnlContenedor;
         private System.Windows.Forms.Button btnTelemetria;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnCiberseguridad;
+        private System.Windows.Forms.Button btnLogistica;
+        private System.Windows.Forms.Button btnMonitor;
+        private System.Windows.Forms.Button btnBaseDeDatos;
+        private System.Windows.Forms.Button btnBioinformatica;
         private System.Windows.Forms.Button btnMinimizar;
         private System.Windows.Forms.Button btnMaximizar;
         private System.Windows.Forms.Button btnEmergencia;
+        private System.Windows.Forms.Timer timeReloj;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel lblHora;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblCabecera;
     }
 }
 
