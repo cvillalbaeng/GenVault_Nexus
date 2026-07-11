@@ -37,19 +37,22 @@
             // 
             // pbRed
             // 
+            this.pbRed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pbRed.Location = new System.Drawing.Point(50, 280);
             this.pbRed.Name = "pbRed";
             this.pbRed.Size = new System.Drawing.Size(850, 40);
             this.pbRed.TabIndex = 0;
+            this.pbRed.Click += new System.EventHandler(this.pbRed_Click);
             // 
             // lblTrafico
             // 
             this.lblTrafico.AutoSize = true;
-            this.lblTrafico.ForeColor = System.Drawing.Color.White;
             this.lblTrafico.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.lblTrafico.ForeColor = System.Drawing.Color.White;
             this.lblTrafico.Location = new System.Drawing.Point(50, 240);
             this.lblTrafico.Name = "lblTrafico";
-            this.lblTrafico.Size = new System.Drawing.Size(300, 25);
+            this.lblTrafico.Size = new System.Drawing.Size(235, 25);
             this.lblTrafico.TabIndex = 1;
             this.lblTrafico.Text = "Tráfico de Red Borde: 0%";
             // 
@@ -60,15 +63,16 @@
             this.lblAlertaZabbix.ForeColor = System.Drawing.Color.Red;
             this.lblAlertaZabbix.Location = new System.Drawing.Point(200, 380);
             this.lblAlertaZabbix.Name = "lblAlertaZabbix";
-            this.lblAlertaZabbix.Size = new System.Drawing.Size(500, 30);
+            this.lblAlertaZabbix.Size = new System.Drawing.Size(406, 30);
             this.lblAlertaZabbix.TabIndex = 2;
             this.lblAlertaZabbix.Text = "ALERTA ZABBIX: SATURACIÓN DE RED";
             this.lblAlertaZabbix.Visible = false;
+            this.lblAlertaZabbix.Click += new System.EventHandler(this.lblAlertaZabbix_Click);
             // 
             // tmrRed
             // 
             this.tmrRed.Enabled = true;
-            this.tmrRed.Interval = 1500;
+            this.tmrRed.Interval = 3000;
             this.tmrRed.Tick += new System.EventHandler(this.tmrRed_Tick);
             // 
             // ucMonitorTI

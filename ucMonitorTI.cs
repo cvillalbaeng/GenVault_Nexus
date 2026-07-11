@@ -36,5 +36,15 @@ namespace MonitorTI
                 lblAlertaZabbix.Visible = false;
             }
         }
+
+        private void pbRed_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblAlertaZabbix_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

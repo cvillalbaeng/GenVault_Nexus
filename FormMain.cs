@@ -1,10 +1,11 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using MonitorTI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -82,6 +83,16 @@ namespace GenVault_Nexus
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            MostrarModulo(new ucMonitorTI());
+        }
+
+        private void btnEmergencia_Click(object sender, EventArgs e)
+        {
+            MostrarModulo(new ucEmergencia());
         }
     }
 }

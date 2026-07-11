@@ -1,4 +1,7 @@
-﻿namespace GenVault_Nexus
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+namespace GenVault_Nexus
 {
     partial class ucEmergencia
     {
@@ -28,65 +31,71 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblEstadoFuego = new Label();
-            lblEstadoPuertas = new Label();
-            btnIncendio = new Button();
-            SuspendLayout();
+            this.lblEstadoFuego = new System.Windows.Forms.Label();
+            this.lblEstadoPuertas = new System.Windows.Forms.Label();
+            this.btnIncendio = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // lblEstadoFuego
             // 
-            lblEstadoFuego.AutoSize = true;
-            lblEstadoFuego.Font = new Font("Segoe UI", 9.5F);
-            lblEstadoFuego.ForeColor = Color.White;
-            lblEstadoFuego.Location = new Point(348, 167);
-            lblEstadoFuego.Name = "lblEstadoFuego";
-            lblEstadoFuego.Size = new Size(138, 17);
-            lblEstadoFuego.TabIndex = 0;
-            lblEstadoFuego.Text = "Alarmas: SILENCIADAS";
+            this.lblEstadoFuego.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEstadoFuego.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblEstadoFuego.ForeColor = System.Drawing.Color.White;
+            this.lblEstadoFuego.Location = new System.Drawing.Point(348, 167);
+            this.lblEstadoFuego.Name = "lblEstadoFuego";
+            this.lblEstadoFuego.Size = new System.Drawing.Size(138, 17);
+            this.lblEstadoFuego.TabIndex = 0;
+            this.lblEstadoFuego.Text = "Alarmas: SILENCIADAS";
+            this.lblEstadoFuego.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblEstadoPuertas
             // 
-            lblEstadoPuertas.AutoSize = true;
-            lblEstadoPuertas.Font = new Font("Segoe UI", 9.5F);
-            lblEstadoPuertas.ForeColor = Color.White;
-            lblEstadoPuertas.Location = new Point(339, 212);
-            lblEstadoPuertas.Name = "lblEstadoPuertas";
-            lblEstadoPuertas.Size = new Size(147, 17);
-            lblEstadoPuertas.TabIndex = 1;
-            lblEstadoPuertas.Text = "Electroimanes: ACTIVOS";
+            this.lblEstadoPuertas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEstadoPuertas.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblEstadoPuertas.ForeColor = System.Drawing.Color.White;
+            this.lblEstadoPuertas.Location = new System.Drawing.Point(339, 212);
+            this.lblEstadoPuertas.Name = "lblEstadoPuertas";
+            this.lblEstadoPuertas.Size = new System.Drawing.Size(147, 17);
+            this.lblEstadoPuertas.TabIndex = 1;
+            this.lblEstadoPuertas.Text = "Electroimanes: ACTIVOS";
+            this.lblEstadoPuertas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnIncendio
             // 
-            btnIncendio.BackColor = Color.Red;
-            btnIncendio.Font = new Font("Segoe UI", 12F);
-            btnIncendio.ForeColor = Color.White;
-            btnIncendio.Location = new Point(160, 286);
-            btnIncendio.Name = "btnIncendio";
-            btnIncendio.Size = new Size(489, 184);
-            btnIncendio.TabIndex = 2;
-            btnIncendio.Text = "SIMULAR INCENDIO";
-            btnIncendio.UseVisualStyleBackColor = false;
-            btnIncendio.Click += btnIncendio_Click;
+            this.btnIncendio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnIncendio.BackColor = System.Drawing.Color.Red;
+            this.btnIncendio.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnIncendio.ForeColor = System.Drawing.Color.White;
+            this.btnIncendio.Location = new System.Drawing.Point(160, 286);
+            this.btnIncendio.Name = "btnIncendio";
+            this.btnIncendio.Size = new System.Drawing.Size(489, 184);
+            this.btnIncendio.TabIndex = 2;
+            this.btnIncendio.Text = "SIMULAR INCENDIO";
+            this.btnIncendio.UseVisualStyleBackColor = false;
+            this.btnIncendio.Click += new System.EventHandler(this.btnIncendio_Click);
             // 
             // ucEmergencia
             // 
-            AutoScaleDimensions = new SizeF(6F, 13F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 30);
-            Controls.Add(btnIncendio);
-            Controls.Add(lblEstadoPuertas);
-            Controls.Add(lblEstadoFuego);
-            Font = new Font("Segoe UI", 8.25F);
-            Name = "ucEmergencia";
-            Size = new Size(814, 581);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.Controls.Add(this.btnIncendio);
+            this.Controls.Add(this.lblEstadoPuertas);
+            this.Controls.Add(this.lblEstadoFuego);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.Name = "ucEmergencia";
+            this.Size = new System.Drawing.Size(814, 581);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
 
-        private Label lblEstadoFuego;
-        private Label lblEstadoPuertas;
-        private Button btnIncendio;
+        private System.Windows.Forms.Label lblEstadoFuego;
+        private System.Windows.Forms.Label lblEstadoPuertas;
+        private System.Windows.Forms.Button btnIncendio;
     }
 }
