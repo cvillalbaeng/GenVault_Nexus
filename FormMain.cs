@@ -139,9 +139,7 @@ namespace GenVault_Nexus
         private void btnLogistica_Click(object sender, EventArgs e)
         {
             lblCabecera.Text = "GenVault > Logística e Inventario";
-            pnlContenedor.Controls.Clear();
-            // TODO: Reemplazar esta línea anterior cuando entreguen el módudulo e inyectar la siguiente línea comentada:
-            // MostrarModulo(new ucLogistica());
+            MostrarModulo(new ucInventario());
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GenVault_Nexus
 {
@@ -81,16 +82,19 @@ namespace GenVault_Nexus
 
             dgvInventario.DefaultCellStyle.BackColor = Color.FromArgb(37, 37, 38);
             dgvInventario.DefaultCellStyle.ForeColor = Color.Gainsboro;
-            dgvInventario.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dgvInventario.DefaultCellStyle.SelectionBackColor = Color.DarkCyan;
             dgvInventario.DefaultCellStyle.SelectionForeColor = Color.White;
             dgvInventario.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F);
             dgvInventario.RowTemplate.Height = 30;
 
             if (dgvInventario.Columns["Material"] != null)
-                dgvInventario.Columns["Material"].Width = 550;
+                dgvInventario.Columns["Material"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //dgvInventario.Columns["Material"].Width = 550;
 
             if (dgvInventario.Columns["Cantidad"] != null)
+                dgvInventario.Columns["Cantidad"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 dgvInventario.Columns["Cantidad"].Width = 150;
+
         }
 
         // ============================================================
@@ -175,6 +179,66 @@ namespace GenVault_Nexus
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
+            }
+        }
+
+        private void dgvInventario_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblAlertas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            // 1. Abrimos la ventana típica de Windows para "Guardar archivo como..."
+            SaveFileDialog ventanaGuardar = new SaveFileDialog();
+            ventanaGuardar.Filter = "Archivo CSV (*.csv)|*.csv";
+            ventanaGuardar.Title = "Guardar Sugerencia de Orden de Compra";
+            ventanaGuardar.FileName = "OrdenCompra_GenVault_" + DateTime.Now.ToString("ddMMyyyy");
+
+            // 2. Si el usuario elige una ruta y le da a "Guardar"...
+            if (ventanaGuardar.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // 3. Preparamos el constructor de texto para escribir el archivo
+                    using (StreamWriter escritor = new StreamWriter(ventanaGuardar.FileName, false, System.Text.Encoding.UTF8))
+                    {
+                        // Escribimos la cabecera del archivo
+                        escritor.WriteLine("Material;Cantidad_Actual;Estado");
+
+                        // 4. Recorremos toda la tabla (el DataGridView) fila por fila
+                        foreach (DataGridViewRow fila in dgvInventario.Rows)
+                        {
+                            if (fila.Cells["Cantidad"].Value != null)
+                            {
+                                string material = fila.Cells["Material"].Value.ToString();
+                                int cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+
+                                // Solo exportamos los que necesitan compra (Críticos o Bajos)
+                                if (cantidad < 10)
+                                {
+                                    string estado = (cantidad <= 1) ? "CRITICO" : "BAJO";
+
+                                    // Escribimos la línea separada por comas (formato CSV)
+                                    // Cambia la coma por un punto y coma:
+                                    escritor.WriteLine($"{material};{cantidad};{estado}");
+                                }
+                            }
+                        }
+                    }
+
+                    // 5. Avisamos que fue un éxito
+                    MessageBox.Show("Orden de compra exportada exitosamente.", "Exportación GenVault", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al exportar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

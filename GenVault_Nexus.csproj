@@ -61,6 +61,12 @@
     <Compile Include="ucEmergencia.Designer.cs">
       <DependentUpon>ucEmergencia.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucInventario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucInventario.Designer.cs">
+      <DependentUpon>ucInventario.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucMonitorTI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <!-- INICIO DE LOS RECURSOS DE TUS COMPAÑEROS -->
     <EmbeddedResource Include="ucEmergencia.resx">
       <DependentUpon>ucEmergencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucInventario.resx">
+      <DependentUpon>ucInventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucMonitorTI.resx">
       <DependentUpon>ucMonitorTI.cs</DependentUpon>

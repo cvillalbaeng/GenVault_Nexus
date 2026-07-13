@@ -37,7 +37,9 @@
             // 
             // btnVentilacion
             // 
-            this.btnVentilacion.BackColor = System.Drawing.Color.Silver;
+            this.btnVentilacion.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnVentilacion.FlatAppearance.BorderSize = 0;
+            this.btnVentilacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVentilacion.Font = new System.Drawing.Font("Segoe UI", 40F);
             this.btnVentilacion.Location = new System.Drawing.Point(162, 393);
             this.btnVentilacion.Name = "btnVentilacion";
@@ -50,13 +52,14 @@
             // lblTemperatura
             // 
             this.lblTemperatura.AutoSize = true;
-            this.lblTemperatura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.lblTemperatura.Font = new System.Drawing.Font("Segoe UI", 100F);
+            this.lblTemperatura.BackColor = System.Drawing.Color.Transparent;
+            this.lblTemperatura.Font = new System.Drawing.Font("Segoe UI", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTemperatura.ForeColor = System.Drawing.Color.DarkCyan;
             this.lblTemperatura.Location = new System.Drawing.Point(283, 80);
             this.lblTemperatura.Name = "lblTemperatura";
-            this.lblTemperatura.Size = new System.Drawing.Size(332, 177);
+            this.lblTemperatura.Size = new System.Drawing.Size(399, 175);
             this.lblTemperatura.TabIndex = 1;
-            this.lblTemperatura.Text = "24°c";
+            this.lblTemperatura.Text = "24 °C";
             this.lblTemperatura.Click += new System.EventHandler(this.lblTemperatura_Click);
             // 
             // tmrClima
@@ -68,7 +71,8 @@
             // lblAlertaTemp
             // 
             this.lblAlertaTemp.BackColor = System.Drawing.Color.Red;
-            this.lblAlertaTemp.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblAlertaTemp.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlertaTemp.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblAlertaTemp.Location = new System.Drawing.Point(283, 293);
             this.lblAlertaTemp.Name = "lblAlertaTemp";
             this.lblAlertaTemp.Size = new System.Drawing.Size(332, 59);
