@@ -133,9 +133,7 @@ namespace GenVault_Nexus
         private void btnTelemetria_Click(object sender, EventArgs e)
         {
             lblCabecera.Text = "GenVault > Unidad de Telemetría";
-            pnlContenedor.Controls.Clear();
-            // TODO: Reemplazar esta línea anterior cuando entreguen el módudulo e inyectar la siguiente línea comentada:
-            // MostrarModulo(new ucTelemetria());
+            MostrarModulo(new ucTelemetria());
         }
 
         private void btnLogistica_Click(object sender, EventArgs e)
