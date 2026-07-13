@@ -61,6 +61,12 @@
     <Compile Include="ucEmergencia.Designer.cs">
       <DependentUpon>ucEmergencia.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucInventario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucInventario.Designer.cs">
+      <DependentUpon>ucInventario.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucMonitorTI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -68,6 +74,12 @@
       <DependentUpon>ucMonitorTI.cs</DependentUpon>
     </Compile>
     <!-- FIN DE LOS MÓDULOS -->
+    <Compile Include="ucTelemetria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucTelemetria.Designer.cs">
+      <DependentUpon>ucTelemetria.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resx">
@@ -82,10 +94,16 @@
     <EmbeddedResource Include="ucEmergencia.resx">
       <DependentUpon>ucEmergencia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucInventario.resx">
+      <DependentUpon>ucInventario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucMonitorTI.resx">
       <DependentUpon>ucMonitorTI.cs</DependentUpon>
     </EmbeddedResource>
     <!-- FIN DE LOS RECURSOS -->
+    <EmbeddedResource Include="ucTelemetria.resx">
+      <DependentUpon>ucTelemetria.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -106,5 +124,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

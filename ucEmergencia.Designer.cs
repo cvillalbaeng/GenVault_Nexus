@@ -40,11 +40,11 @@ namespace GenVault_Nexus
             // 
             this.lblEstadoFuego.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEstadoFuego.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblEstadoFuego.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstadoFuego.ForeColor = System.Drawing.Color.White;
-            this.lblEstadoFuego.Location = new System.Drawing.Point(348, 167);
+            this.lblEstadoFuego.Location = new System.Drawing.Point(298, 168);
             this.lblEstadoFuego.Name = "lblEstadoFuego";
-            this.lblEstadoFuego.Size = new System.Drawing.Size(138, 17);
+            this.lblEstadoFuego.Size = new System.Drawing.Size(273, 34);
             this.lblEstadoFuego.TabIndex = 0;
             this.lblEstadoFuego.Text = "Alarmas: SILENCIADAS";
             this.lblEstadoFuego.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -53,11 +53,11 @@ namespace GenVault_Nexus
             // 
             this.lblEstadoPuertas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEstadoPuertas.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblEstadoPuertas.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstadoPuertas.ForeColor = System.Drawing.Color.White;
-            this.lblEstadoPuertas.Location = new System.Drawing.Point(339, 212);
+            this.lblEstadoPuertas.Location = new System.Drawing.Point(280, 211);
             this.lblEstadoPuertas.Name = "lblEstadoPuertas";
-            this.lblEstadoPuertas.Size = new System.Drawing.Size(147, 17);
+            this.lblEstadoPuertas.Size = new System.Drawing.Size(303, 34);
             this.lblEstadoPuertas.TabIndex = 1;
             this.lblEstadoPuertas.Text = "Electroimanes: ACTIVOS";
             this.lblEstadoPuertas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -67,9 +67,11 @@ namespace GenVault_Nexus
             this.btnIncendio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIncendio.BackColor = System.Drawing.Color.Red;
-            this.btnIncendio.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnIncendio.FlatAppearance.BorderSize = 0;
+            this.btnIncendio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIncendio.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIncendio.ForeColor = System.Drawing.Color.White;
-            this.btnIncendio.Location = new System.Drawing.Point(160, 286);
+            this.btnIncendio.Location = new System.Drawing.Point(160, 281);
             this.btnIncendio.Name = "btnIncendio";
             this.btnIncendio.Size = new System.Drawing.Size(489, 184);
             this.btnIncendio.TabIndex = 2;
