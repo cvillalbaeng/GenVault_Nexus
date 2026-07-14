@@ -55,6 +55,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <!-- INICIO DE LOS MÓDULOS DE TUS COMPAÑEROS -->
+    <Compile Include="ucBioinformatica.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucBioinformatica.Designer.cs">
+      <DependentUpon>ucBioinformatica.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucEmergencia.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,6 +97,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <!-- INICIO DE LOS RECURSOS DE TUS COMPAÑEROS -->
+    <EmbeddedResource Include="ucBioinformatica.resx">
+      <DependentUpon>ucBioinformatica.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucEmergencia.resx">
       <DependentUpon>ucEmergencia.cs</DependentUpon>
     </EmbeddedResource>
