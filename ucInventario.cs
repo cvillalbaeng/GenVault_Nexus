@@ -9,6 +9,7 @@ namespace GenVault_Nexus
     public partial class ucInventario : UserControl
     {
 
+        // TODO:
         // Un DataGridView es Temporal
         // Usando un DataTable, separo la LÓGICA (los datos crudos: 
         // nombre del insumo, cantidad, etc.) de la PRESENTACIÓN 

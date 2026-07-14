@@ -67,7 +67,7 @@
             this.pnlHeader.Controls.Add(this.label1);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1215, 28);
             this.pnlHeader.TabIndex = 0;
@@ -85,7 +85,7 @@
             this.btnMinimizar.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnMinimizar.ForeColor = System.Drawing.Color.White;
             this.btnMinimizar.Location = new System.Drawing.Point(1110, 0);
-            this.btnMinimizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMinimizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(35, 28);
             this.btnMinimizar.TabIndex = 3;
@@ -103,7 +103,7 @@
             this.btnMaximizar.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnMaximizar.ForeColor = System.Drawing.Color.White;
             this.btnMaximizar.Location = new System.Drawing.Point(1145, 0);
-            this.btnMaximizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMaximizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnMaximizar.Name = "btnMaximizar";
             this.btnMaximizar.Size = new System.Drawing.Size(35, 28);
             this.btnMaximizar.TabIndex = 2;
@@ -121,7 +121,7 @@
             this.btnCerrar.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnCerrar.ForeColor = System.Drawing.Color.White;
             this.btnCerrar.Location = new System.Drawing.Point(1180, 0);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(35, 28);
             this.btnCerrar.TabIndex = 1;
@@ -154,7 +154,7 @@
             this.pnlMenu.Controls.Add(this.btnTelemetria);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 28);
-            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(250, 692);
             this.pnlMenu.TabIndex = 1;
@@ -167,7 +167,7 @@
             this.btnEmergencia.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEmergencia.ForeColor = System.Drawing.Color.White;
             this.btnEmergencia.Location = new System.Drawing.Point(11, 586);
-            this.btnEmergencia.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEmergencia.Margin = new System.Windows.Forms.Padding(2);
             this.btnEmergencia.Name = "btnEmergencia";
             this.btnEmergencia.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnEmergencia.Size = new System.Drawing.Size(216, 60);
@@ -186,7 +186,7 @@
             this.btnMonitor.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMonitor.ForeColor = System.Drawing.Color.White;
             this.btnMonitor.Location = new System.Drawing.Point(10, 276);
-            this.btnMonitor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMonitor.Margin = new System.Windows.Forms.Padding(2);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnMonitor.Size = new System.Drawing.Size(216, 65);
@@ -204,7 +204,7 @@
             this.btnBaseDeDatos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBaseDeDatos.ForeColor = System.Drawing.Color.White;
             this.btnBaseDeDatos.Location = new System.Drawing.Point(11, 195);
-            this.btnBaseDeDatos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBaseDeDatos.Margin = new System.Windows.Forms.Padding(2);
             this.btnBaseDeDatos.Name = "btnBaseDeDatos";
             this.btnBaseDeDatos.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnBaseDeDatos.Size = new System.Drawing.Size(216, 42);
@@ -222,7 +222,7 @@
             this.btnBioinformatica.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBioinformatica.ForeColor = System.Drawing.Color.White;
             this.btnBioinformatica.Location = new System.Drawing.Point(11, 124);
-            this.btnBioinformatica.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBioinformatica.Margin = new System.Windows.Forms.Padding(2);
             this.btnBioinformatica.Name = "btnBioinformatica";
             this.btnBioinformatica.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnBioinformatica.Size = new System.Drawing.Size(216, 42);
@@ -240,7 +240,7 @@
             this.btnLogistica.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogistica.ForeColor = System.Drawing.Color.White;
             this.btnLogistica.Location = new System.Drawing.Point(11, 488);
-            this.btnLogistica.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogistica.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogistica.Name = "btnLogistica";
             this.btnLogistica.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnLogistica.Size = new System.Drawing.Size(216, 59);
@@ -259,14 +259,14 @@
             this.btnCiberseguridad.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCiberseguridad.ForeColor = System.Drawing.Color.White;
             this.btnCiberseguridad.Location = new System.Drawing.Point(11, 31);
-            this.btnCiberseguridad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCiberseguridad.Margin = new System.Windows.Forms.Padding(2);
             this.btnCiberseguridad.Name = "btnCiberseguridad";
             this.btnCiberseguridad.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnCiberseguridad.Size = new System.Drawing.Size(216, 66);
             this.btnCiberseguridad.TabIndex = 1;
-            this.btnCiberseguridad.Text = "🔐 CIBERSEGURIDAD Y ACCESOS";
+            this.btnCiberseguridad.Text = "🔐 CERRAR SESIÓN";
             this.btnCiberseguridad.UseVisualStyleBackColor = true;
-            this.btnCiberseguridad.Click += new System.EventHandler(this.btnCiberseguridad_Click);
+            this.btnCiberseguridad.Click += new System.EventHandler(this.btnlogin_Click);
             // 
             // btnTelemetria
             // 
@@ -276,7 +276,7 @@
             this.btnTelemetria.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTelemetria.ForeColor = System.Drawing.Color.White;
             this.btnTelemetria.Location = new System.Drawing.Point(11, 373);
-            this.btnTelemetria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTelemetria.Margin = new System.Windows.Forms.Padding(2);
             this.btnTelemetria.Name = "btnTelemetria";
             this.btnTelemetria.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnTelemetria.Size = new System.Drawing.Size(216, 76);
@@ -292,7 +292,7 @@
             this.pnlContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenedor.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.pnlContenedor.Location = new System.Drawing.Point(250, 28);
-            this.pnlContenedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlContenedor.Margin = new System.Windows.Forms.Padding(2);
             this.pnlContenedor.Name = "pnlContenedor";
             this.pnlContenedor.Size = new System.Drawing.Size(965, 692);
             this.pnlContenedor.TabIndex = 2;
@@ -338,7 +338,7 @@
             // 
             this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.Cyan;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(277, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(260, 17);
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.Text = "Usuario: Esperando inicio de sesión...";
             // 
@@ -346,7 +346,7 @@
             // 
             this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Cyan;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(277, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(260, 17);
             this.toolStripStatusLabel2.Spring = true;
             this.toolStripStatusLabel2.Text = "Servidor: Bio-Core Alpha (Desconectado)";
             // 
@@ -354,7 +354,7 @@
             // 
             this.toolStripStatusLabel3.ForeColor = System.Drawing.Color.Cyan;
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(277, 17);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(139, 17);
             this.toolStripStatusLabel3.Spring = true;
             this.toolStripStatusLabel3.Text = "Módulo Activo: Ninguno";
             // 
@@ -383,7 +383,7 @@
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

@@ -86,6 +86,12 @@
     <Compile Include="ucTelemetria.Designer.cs">
       <DependentUpon>ucTelemetria.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucLogin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucLogin.Designer.cs">
+      <DependentUpon>ucLogin.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resx">
@@ -105,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucInventario.resx">
       <DependentUpon>ucInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucLogin.resx">
+      <DependentUpon>ucLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucMonitorTI.resx">
       <DependentUpon>ucMonitorTI.cs</DependentUpon>
