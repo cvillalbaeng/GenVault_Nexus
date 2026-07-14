@@ -117,9 +117,7 @@ namespace GenVault_Nexus
         private void btnBioinformatica_Click(object sender, EventArgs e)
         {
             lblCabecera.Text = "GenVault > Bioinformática";
-            pnlContenedor.Controls.Clear();
-            // TODO: Reemplazar esta línea anterior cuando entreguen el módudulo e inyectar la siguiente línea comentada:
-            // MostrarModulo(new ucBioinformatica());
+            MostrarModulo(new ucBioinformatica());
         }
 
         private void btnBaseDeDatos_Click(object sender, EventArgs e)
