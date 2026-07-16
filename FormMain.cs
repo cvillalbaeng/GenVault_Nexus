@@ -46,10 +46,10 @@ namespace GenVault_Nexus
         private void BloquearMenu()
         {
             // Apagamos todos los botones de los departamentos existentes
-            btnBioinformatica.Enabled = false;
+            btnBioinformatica.Enabled = true;
             btnBaseDeDatos.Enabled = false;
-            btnTelemetria.Enabled = false;
-            btnLogistica.Enabled = false;
+            btnTelemetria.Enabled = true;
+            btnLogistica.Enabled = true;
             btnMonitor.Enabled = false;
             btnEmergencia.Enabled = false;
         }
