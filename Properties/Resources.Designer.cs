@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GenVault_Nexus.Properties {
+namespace WinFormsApp1.Properties {
     using System;
     
     
