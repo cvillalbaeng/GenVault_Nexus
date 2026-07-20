@@ -47,11 +47,29 @@ namespace GenVault_Nexus
         {
             // Apagamos todos los botones de los departamentos existentes
             btnBioinformatica.Enabled = true;
-            btnBaseDeDatos.Enabled = false;
+            btnBaseDeDatos.Enabled = true;
             btnTelemetria.Enabled = true;
             btnLogistica.Enabled = true;
-            btnMonitor.Enabled = false;
-            btnEmergencia.Enabled = false;
+            btnMonitor.Enabled = true;
+            btnEmergencia.Enabled = true;
+        }
+
+        // Método público para que el Login avise que la sesión fue exitosa
+        public void IniciarSesion(string nombreUsuario, string rol)
+        {
+            // 1. Actualizamos la barra de estado con los datos reales
+            toolStripStatusLabel1.Text = $"Usuario: {nombreUsuario} [{rol}]";
+            toolStripStatusLabel2.Text = "Servidor: Bio-Core Alpha (Conectado)";
+            toolStripStatusLabel3.Text = "Módulo Activo: Panel de Control";
+
+            // 2. Desbloqueamos los botones del menú lateral (si tienes un método DesbloquearMenu, llámalo aquí)
+            // DesbloquearMenu(); 
+
+            // 3. Limpiamos el contenedor central para quitar el Login
+            pnlContenedor.Controls.Clear();
+
+            // 4. (Opcional) Podemos cargar una pantalla de bienvenida o dejar el fondo limpio
+            lblCabecera.Text = "GenVault > Panel de Control";
         }
 
         private void CargarPantallaInicial()
@@ -167,12 +185,14 @@ namespace GenVault_Nexus
         private void btnMonitor_Click(object sender, EventArgs e)
         {
             lblCabecera.Text = "GenVault > Monitor de Infraestructura TI";
+            toolStripStatusLabel3.Text = "Módulo Activo: Monitor TI";
             MostrarModulo(new ucMonitorTI());
         }
 
         private void btnEmergencia_Click(object sender, EventArgs e)
         {
             lblCabecera.Text = "GenVault > Protocolos de Emergencia";
+            toolStripStatusLabel3.Text = "Módulo Activo: Emergencia";
             MostrarModulo(new ucEmergencia());
         }
 
@@ -184,26 +204,29 @@ namespace GenVault_Nexus
         private void btnBioinformatica_Click(object sender, EventArgs e)
         {
             lblCabecera.Text = "GenVault > Bioinformática";
+            toolStripStatusLabel3.Text = "Módulo Activo: Bioinformática";
             MostrarModulo(new ucBioinformatica());
         }
 
         private void btnBaseDeDatos_Click(object sender, EventArgs e)
         {
             lblCabecera.Text = "GenVault > Base de Datos";
+            toolStripStatusLabel3.Text = "Módulo Activo: Base de Datos";
             pnlContenedor.Controls.Clear();
-            // TODO: Reemplazar esta línea anterior cuando entreguen el módulo e inyectar la siguiente línea comentada:
-            // MostrarModulo(new ucBaseDatos());
+            //MostrarModulo(new ucBaseDatos());
         }
 
         private void btnTelemetria_Click(object sender, EventArgs e)
         {
             lblCabecera.Text = "GenVault > Unidad de Telemetría";
+            toolStripStatusLabel3.Text = "Módulo Activo: Telemetría";
             MostrarModulo(new ucTelemetria());
         }
 
         private void btnLogistica_Click(object sender, EventArgs e)
         {
             lblCabecera.Text = "GenVault > Logística e Inventario";
+            toolStripStatusLabel3.Text = "Módulo Activo: Logística e Inventario";
             MostrarModulo(new ucInventario());
         }
 

@@ -70,7 +70,7 @@
             this.pnlHeader.Controls.Add(this.label1);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1167, 28);
             this.pnlHeader.TabIndex = 0;
@@ -88,7 +88,7 @@
             this.btnMinimizar.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnMinimizar.ForeColor = System.Drawing.Color.White;
             this.btnMinimizar.Location = new System.Drawing.Point(1062, 0);
-            this.btnMinimizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMinimizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(35, 28);
             this.btnMinimizar.TabIndex = 3;
@@ -106,7 +106,7 @@
             this.btnMaximizar.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnMaximizar.ForeColor = System.Drawing.Color.White;
             this.btnMaximizar.Location = new System.Drawing.Point(1097, 0);
-            this.btnMaximizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMaximizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnMaximizar.Name = "btnMaximizar";
             this.btnMaximizar.Size = new System.Drawing.Size(35, 28);
             this.btnMaximizar.TabIndex = 2;
@@ -124,7 +124,7 @@
             this.btnCerrar.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnCerrar.ForeColor = System.Drawing.Color.White;
             this.btnCerrar.Location = new System.Drawing.Point(1132, 0);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(35, 28);
             this.btnCerrar.TabIndex = 1;
@@ -148,7 +148,6 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.pnlMenu.Controls.Add(this.pictureBox1);
             this.pnlMenu.Controls.Add(this.btnEmergencia);
             this.pnlMenu.Controls.Add(this.btnMonitor);
             this.pnlMenu.Controls.Add(this.btnBaseDeDatos);
@@ -156,36 +155,39 @@
             this.pnlMenu.Controls.Add(this.btnLogistica);
             this.pnlMenu.Controls.Add(this.btnCiberseguridad);
             this.pnlMenu.Controls.Add(this.btnTelemetria);
+            this.pnlMenu.Controls.Add(this.pictureBox1);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 28);
-            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(250, 690);
             this.pnlMenu.TabIndex = 1;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(62, 20);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(124, 92);
+            this.pictureBox1.Size = new System.Drawing.Size(250, 92);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // btnEmergencia
             // 
+            this.btnEmergencia.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnEmergencia.FlatAppearance.BorderSize = 0;
             this.btnEmergencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(74)))), ((int)(((byte)(89)))));
             this.btnEmergencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmergencia.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEmergencia.ForeColor = System.Drawing.Color.White;
-            this.btnEmergencia.Location = new System.Drawing.Point(11, 586);
-            this.btnEmergencia.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEmergencia.Location = new System.Drawing.Point(0, 376);
+            this.btnEmergencia.Margin = new System.Windows.Forms.Padding(2);
             this.btnEmergencia.Name = "btnEmergencia";
             this.btnEmergencia.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnEmergencia.Size = new System.Drawing.Size(216, 60);
+            this.btnEmergencia.Size = new System.Drawing.Size(250, 60);
             this.btnEmergencia.TabIndex = 7;
             this.btnEmergencia.Text = "🚨 PROTOCOLOS DE EMERGENCIA";
             this.toolTip1.SetToolTip(this.btnEmergencia, "Panel de control de incendios y anulación manual del sistema Fail-Open de electro" +
@@ -195,16 +197,17 @@
             // 
             // btnMonitor
             // 
+            this.btnMonitor.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnMonitor.FlatAppearance.BorderSize = 0;
             this.btnMonitor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(74)))), ((int)(((byte)(89)))));
             this.btnMonitor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMonitor.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMonitor.ForeColor = System.Drawing.Color.White;
-            this.btnMonitor.Location = new System.Drawing.Point(11, 366);
-            this.btnMonitor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMonitor.Location = new System.Drawing.Point(0, 311);
+            this.btnMonitor.Margin = new System.Windows.Forms.Padding(2);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnMonitor.Size = new System.Drawing.Size(216, 65);
+            this.btnMonitor.Size = new System.Drawing.Size(250, 65);
             this.btnMonitor.TabIndex = 5;
             this.btnMonitor.Text = "🖥️  MONITOR DE INFRAESTRUCTURA TI";
             this.toolTip1.SetToolTip(this.btnMonitor, "Monitoreo de tráfico y estado del Bio-Core Alpha");
@@ -213,16 +216,17 @@
             // 
             // btnBaseDeDatos
             // 
+            this.btnBaseDeDatos.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnBaseDeDatos.FlatAppearance.BorderSize = 0;
             this.btnBaseDeDatos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(74)))), ((int)(((byte)(89)))));
             this.btnBaseDeDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBaseDeDatos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBaseDeDatos.ForeColor = System.Drawing.Color.White;
-            this.btnBaseDeDatos.Location = new System.Drawing.Point(11, 290);
-            this.btnBaseDeDatos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBaseDeDatos.Location = new System.Drawing.Point(0, 269);
+            this.btnBaseDeDatos.Margin = new System.Windows.Forms.Padding(2);
             this.btnBaseDeDatos.Name = "btnBaseDeDatos";
             this.btnBaseDeDatos.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnBaseDeDatos.Size = new System.Drawing.Size(216, 42);
+            this.btnBaseDeDatos.Size = new System.Drawing.Size(250, 42);
             this.btnBaseDeDatos.TabIndex = 4;
             this.btnBaseDeDatos.Text = "🗄️ BASE DE DATOS";
             this.toolTip1.SetToolTip(this.btnBaseDeDatos, "Gestión centralizada (CRUD) del núcleo y registro de especímenes de prueba");
@@ -231,16 +235,17 @@
             // 
             // btnBioinformatica
             // 
+            this.btnBioinformatica.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnBioinformatica.FlatAppearance.BorderSize = 0;
             this.btnBioinformatica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(74)))), ((int)(((byte)(89)))));
             this.btnBioinformatica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBioinformatica.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBioinformatica.ForeColor = System.Drawing.Color.White;
-            this.btnBioinformatica.Location = new System.Drawing.Point(18, 206);
-            this.btnBioinformatica.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBioinformatica.Location = new System.Drawing.Point(0, 227);
+            this.btnBioinformatica.Margin = new System.Windows.Forms.Padding(2);
             this.btnBioinformatica.Name = "btnBioinformatica";
             this.btnBioinformatica.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnBioinformatica.Size = new System.Drawing.Size(216, 42);
+            this.btnBioinformatica.Size = new System.Drawing.Size(250, 42);
             this.btnBioinformatica.TabIndex = 3;
             this.btnBioinformatica.Text = "🧬 BIOINFORMÁTICA";
             this.toolTip1.SetToolTip(this.btnBioinformatica, "Simulación del Programación de Algoritmos de Mutación (PAM) y análisis genómico");
@@ -249,16 +254,17 @@
             // 
             // btnLogistica
             // 
+            this.btnLogistica.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnLogistica.FlatAppearance.BorderSize = 0;
             this.btnLogistica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(74)))), ((int)(((byte)(89)))));
             this.btnLogistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogistica.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogistica.ForeColor = System.Drawing.Color.White;
-            this.btnLogistica.Location = new System.Drawing.Point(2, 514);
-            this.btnLogistica.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogistica.Location = new System.Drawing.Point(0, 168);
+            this.btnLogistica.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogistica.Name = "btnLogistica";
             this.btnLogistica.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnLogistica.Size = new System.Drawing.Size(216, 59);
+            this.btnLogistica.Size = new System.Drawing.Size(250, 59);
             this.btnLogistica.TabIndex = 2;
             this.btnLogistica.Text = "📦 LÓGISTICA E INVENTARIO";
             this.toolTip1.SetToolTip(this.btnLogistica, "Control de stock de reactivos e insumos con generación automática de órdenes de c" +
@@ -268,16 +274,17 @@
             // 
             // btnCiberseguridad
             // 
+            this.btnCiberseguridad.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCiberseguridad.FlatAppearance.BorderSize = 0;
             this.btnCiberseguridad.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(74)))), ((int)(((byte)(89)))));
             this.btnCiberseguridad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCiberseguridad.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCiberseguridad.ForeColor = System.Drawing.Color.White;
-            this.btnCiberseguridad.Location = new System.Drawing.Point(18, 115);
-            this.btnCiberseguridad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCiberseguridad.Location = new System.Drawing.Point(0, 624);
+            this.btnCiberseguridad.Margin = new System.Windows.Forms.Padding(2);
             this.btnCiberseguridad.Name = "btnCiberseguridad";
             this.btnCiberseguridad.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnCiberseguridad.Size = new System.Drawing.Size(216, 66);
+            this.btnCiberseguridad.Size = new System.Drawing.Size(250, 66);
             this.btnCiberseguridad.TabIndex = 1;
             this.btnCiberseguridad.Text = "🔐 CERRAR SESIÓN";
             this.btnCiberseguridad.UseVisualStyleBackColor = true;
@@ -285,16 +292,17 @@
             // 
             // btnTelemetria
             // 
+            this.btnTelemetria.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnTelemetria.FlatAppearance.BorderSize = 0;
             this.btnTelemetria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(74)))), ((int)(((byte)(89)))));
             this.btnTelemetria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTelemetria.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTelemetria.ForeColor = System.Drawing.Color.White;
-            this.btnTelemetria.Location = new System.Drawing.Point(11, 435);
-            this.btnTelemetria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTelemetria.Location = new System.Drawing.Point(0, 92);
+            this.btnTelemetria.Margin = new System.Windows.Forms.Padding(2);
             this.btnTelemetria.Name = "btnTelemetria";
             this.btnTelemetria.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnTelemetria.Size = new System.Drawing.Size(216, 76);
+            this.btnTelemetria.Size = new System.Drawing.Size(250, 76);
             this.btnTelemetria.TabIndex = 0;
             this.btnTelemetria.Text = "🌡️ UNIDAD DE TELEMETRIA";
             this.toolTip1.SetToolTip(this.btnTelemetria, "Vigilancia de sensores SNMP (temperatura/humedad) y estado de contención en Unida" +
@@ -307,7 +315,7 @@
             this.pnlContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenedor.Font = new System.Drawing.Font("Marlett", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.pnlContenedor.Location = new System.Drawing.Point(250, 28);
-            this.pnlContenedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlContenedor.Margin = new System.Windows.Forms.Padding(2);
             this.pnlContenedor.Name = "pnlContenedor";
             this.pnlContenedor.Size = new System.Drawing.Size(917, 690);
             this.pnlContenedor.TabIndex = 2;
@@ -399,7 +407,7 @@
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

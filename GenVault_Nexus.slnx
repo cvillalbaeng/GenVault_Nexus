@@ -1,6 +1,12 @@
 <Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
   <Folder Name="/Elementos de la solución/">
     <File Path="README.md" />
   </Folder>
-  <Project Path="GenVault_Nexus.csproj" Id="4fe92fa7-1de4-4957-8914-ced6bb0eed60" />
+  <Project Path="GenVault_Nexus.csproj" Id="4fe92fa7-1de4-4957-8914-ced6bb0eed60">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
 </Solution>

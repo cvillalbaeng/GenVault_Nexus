@@ -25,7 +25,7 @@ namespace GenVault_Nexus
             dgvEspecimenes.SelectionChanged += dgvEspecimenes_SelectionChanged;
 
             btnAgregar.Click += btnAgregar_Click;
-            btnModificar.Click += btnModificar_Click;
+            btnGuardarCambios.Click += btnModificar_Click;
             btnEliminar.Click += btnEliminar_Click;
             btnLimpiar.Click += btnLimpiar_Click;
             btnEjecutarPAM.Click += btnEjecutarPAM_Click;
@@ -99,6 +99,8 @@ namespace GenVault_Nexus
                 );
 
                 LimpiarCampos();
+                // Agrega esta línea para quitar la selección azul de la tabla tras agregar
+                dgvEspecimenes.ClearSelection();
             }
             finally
             {
@@ -252,6 +254,11 @@ namespace GenVault_Nexus
             {
                 btnEjecutarPAM.Enabled = true;
             }
+        }
+
+        private void dgvEspecimenes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -23,18 +23,20 @@
             this.lblMensaje = new System.Windows.Forms.Label();
             this.lblTituloUsuario = new System.Windows.Forms.Label();
             this.lblTituloClave = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtUsuario
             // 
             this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(49)))), ((int)(((byte)(60)))));
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.txtUsuario.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.ForeColor = System.Drawing.Color.White;
-            this.txtUsuario.Location = new System.Drawing.Point(466, 182);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUsuario.Location = new System.Drawing.Point(110, 49);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(175, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(200, 27);
             this.txtUsuario.TabIndex = 0;
             // 
             // txtPassword
@@ -43,10 +45,10 @@
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.White;
-            this.txtPassword.Location = new System.Drawing.Point(466, 242);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPassword.Location = new System.Drawing.Point(110, 109);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(175, 27);
+            this.txtPassword.Size = new System.Drawing.Size(200, 27);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -58,10 +60,10 @@
             this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIngresar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIngresar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnIngresar.Location = new System.Drawing.Point(466, 280);
-            this.btnIngresar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnIngresar.Location = new System.Drawing.Point(110, 147);
+            this.btnIngresar.Margin = new System.Windows.Forms.Padding(2);
             this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(175, 30);
+            this.btnIngresar.Size = new System.Drawing.Size(200, 30);
             this.btnIngresar.TabIndex = 2;
             this.btnIngresar.Text = "VALIDAR ACCESO";
             this.btnIngresar.UseVisualStyleBackColor = false;
@@ -71,7 +73,7 @@
             // 
             this.lblMensaje.AutoSize = true;
             this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-            this.lblMensaje.Location = new System.Drawing.Point(466, 322);
+            this.lblMensaje.Location = new System.Drawing.Point(110, 189);
             this.lblMensaje.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(0, 15);
@@ -83,7 +85,7 @@
             this.lblTituloUsuario.AutoSize = true;
             this.lblTituloUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloUsuario.ForeColor = System.Drawing.Color.White;
-            this.lblTituloUsuario.Location = new System.Drawing.Point(465, 160);
+            this.lblTituloUsuario.Location = new System.Drawing.Point(109, 27);
             this.lblTituloUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTituloUsuario.Name = "lblTituloUsuario";
             this.lblTituloUsuario.Size = new System.Drawing.Size(63, 20);
@@ -95,30 +97,40 @@
             this.lblTituloClave.AutoSize = true;
             this.lblTituloClave.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloClave.ForeColor = System.Drawing.Color.White;
-            this.lblTituloClave.Location = new System.Drawing.Point(465, 220);
+            this.lblTituloClave.Location = new System.Drawing.Point(109, 87);
             this.lblTituloClave.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTituloClave.Name = "lblTituloClave";
             this.lblTituloClave.Size = new System.Drawing.Size(88, 20);
             this.lblTituloClave.TabIndex = 5;
             this.lblTituloClave.Text = "Contraseña";
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.btnIngresar);
+            this.panel1.Controls.Add(this.lblTituloClave);
+            this.panel1.Controls.Add(this.txtUsuario);
+            this.panel1.Controls.Add(this.lblTituloUsuario);
+            this.panel1.Controls.Add(this.txtPassword);
+            this.panel1.Controls.Add(this.lblMensaje);
+            this.panel1.Location = new System.Drawing.Point(375, 134);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(400, 237);
+            this.panel1.TabIndex = 6;
+            // 
             // ucLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(38)))));
-            this.Controls.Add(this.lblTituloClave);
-            this.Controls.Add(this.lblTituloUsuario);
-            this.Controls.Add(this.lblMensaje);
-            this.Controls.Add(this.btnIngresar);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUsuario);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ucLogin";
             this.Size = new System.Drawing.Size(1277, 601);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -130,5 +142,6 @@
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Label lblTituloUsuario;
         private System.Windows.Forms.Label lblTituloClave;
+        private System.Windows.Forms.Panel panel1;
     }
 }

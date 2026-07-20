@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblCodigo = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
@@ -40,7 +40,7 @@
             this.lblFecha = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnGuardarCambios = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.dgvEspecimenes = new System.Windows.Forms.DataGridView();
@@ -181,40 +181,40 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
-            this.btnAgregar.Location = new System.Drawing.Point(51, 164);
+            this.btnAgregar.Location = new System.Drawing.Point(156, 158);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(93, 33);
+            this.btnAgregar.Size = new System.Drawing.Size(111, 33);
             this.btnAgregar.TabIndex = 10;
-            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.Text = "Agregar Nuevo";
             this.btnAgregar.UseVisualStyleBackColor = false;
             // 
-            // btnModificar
+            // btnGuardarCambios
             // 
-            this.btnModificar.BackColor = System.Drawing.Color.DarkCyan;
-            this.btnModificar.FlatAppearance.BorderSize = 0;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.ForeColor = System.Drawing.Color.White;
-            this.btnModificar.Location = new System.Drawing.Point(161, 164);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(93, 33);
-            this.btnModificar.TabIndex = 11;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnGuardarCambios.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnGuardarCambios.FlatAppearance.BorderSize = 0;
+            this.btnGuardarCambios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarCambios.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardarCambios.ForeColor = System.Drawing.Color.White;
+            this.btnGuardarCambios.Location = new System.Drawing.Point(298, 158);
+            this.btnGuardarCambios.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGuardarCambios.Name = "btnGuardarCambios";
+            this.btnGuardarCambios.Size = new System.Drawing.Size(132, 33);
+            this.btnGuardarCambios.TabIndex = 11;
+            this.btnGuardarCambios.Text = "Guardar Cambios";
+            this.btnGuardarCambios.UseVisualStyleBackColor = false;
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(278, 164);
+            this.btnEliminar.Location = new System.Drawing.Point(459, 158);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(93, 33);
+            this.btnEliminar.Size = new System.Drawing.Size(108, 33);
             this.btnEliminar.TabIndex = 12;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -226,7 +226,7 @@
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.White;
-            this.btnLimpiar.Location = new System.Drawing.Point(390, 164);
+            this.btnLimpiar.Location = new System.Drawing.Point(40, 158);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(93, 33);
@@ -236,8 +236,8 @@
             // 
             // dgvEspecimenes
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvEspecimenes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvEspecimenes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvEspecimenes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -248,10 +248,13 @@
             this.dgvEspecimenes.Location = new System.Drawing.Point(18, 206);
             this.dgvEspecimenes.Margin = new System.Windows.Forms.Padding(2);
             this.dgvEspecimenes.Name = "dgvEspecimenes";
+            this.dgvEspecimenes.ReadOnly = true;
             this.dgvEspecimenes.RowHeadersWidth = 51;
             this.dgvEspecimenes.RowTemplate.Height = 24;
+            this.dgvEspecimenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEspecimenes.Size = new System.Drawing.Size(864, 264);
             this.dgvEspecimenes.TabIndex = 14;
+            this.dgvEspecimenes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEspecimenes_CellClick);
             // 
             // btnEjecutarPAM
             // 
@@ -260,7 +263,7 @@
             this.btnEjecutarPAM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEjecutarPAM.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEjecutarPAM.ForeColor = System.Drawing.Color.White;
-            this.btnEjecutarPAM.Location = new System.Drawing.Point(18, 486);
+            this.btnEjecutarPAM.Location = new System.Drawing.Point(23, 486);
             this.btnEjecutarPAM.Margin = new System.Windows.Forms.Padding(2);
             this.btnEjecutarPAM.Name = "btnEjecutarPAM";
             this.btnEjecutarPAM.Size = new System.Drawing.Size(126, 34);
@@ -270,7 +273,7 @@
             // 
             // pbPAM
             // 
-            this.pbPAM.Location = new System.Drawing.Point(161, 486);
+            this.pbPAM.Location = new System.Drawing.Point(166, 486);
             this.pbPAM.Margin = new System.Windows.Forms.Padding(2);
             this.pbPAM.Name = "pbPAM";
             this.pbPAM.Size = new System.Drawing.Size(459, 34);
@@ -299,7 +302,7 @@
             this.Controls.Add(this.dgvEspecimenes);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnModificar);
+            this.Controls.Add(this.btnGuardarCambios);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.lblFecha);
@@ -335,7 +338,7 @@
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnGuardarCambios;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.DataGridView dgvEspecimenes;

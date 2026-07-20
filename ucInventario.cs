@@ -8,21 +8,6 @@ namespace GenVault_Nexus
 {
     public partial class ucInventario : UserControl
     {
-
-        // TODO:
-        // Un DataGridView es Temporal
-        // Usando un DataTable, separo la LÓGICA (los datos crudos: 
-        // nombre del insumo, cantidad, etc.) de la PRESENTACIÓN 
-        // (cómo se ve en el grid, colores, tamaños de columna).
-        //
-        // Cuando el compañero del:
-        // Módulo 8 (Backend/SQLite) entregue su ConexionDB.cs, yo NO
-        // tengo que reescribir el analizador de stock ni tocar el
-        // DataGridView. Solo cambio de dónde SALEN los datos: en vez
-        // de llenarlos manualmente aquí, los voy a traer con una
-        // consulta SQL y los sigo metiendo en el mismo Dt.
-        // El resto del código no se toca.
-        // // ============================================================
         private DataTable tablaInventario = new DataTable();
 
         public ucInventario()
@@ -33,214 +18,209 @@ namespace GenVault_Nexus
 
         private void ucInventario_Load(object sender, EventArgs e)
         {
+            dgvInventario.RightToLeft = RightToLeft.No;
+            dgvInventario.Columns.Clear();
+            dgvInventario.AutoGenerateColumns = false;
+
             ConfigurarColumnas();
             CargarDatosSimulados();
-            // insumos ni de laboratorios, solo sabe DIBUJAR una tabla.
-            // Le entregamos el DataTable y Windows Forms se encarga
-            // de renderizar filas y columnas automáticamente.
-            dgvInventario.DataSource = tablaInventario;
+            ConstruirColumnasGrid();
 
+            dgvInventario.DataSource = tablaInventario;
             EstilizarGrid();
+
+            dgvInventario.SelectionChanged += dgvInventario_SelectionChanged;
         }
 
-        // Define la ESTRUCTURA de la tabla, como el CREATE TABLE de una BD
+        private void ConstruirColumnasGrid()
+        {
+            dgvInventario.Columns.Clear();
+            DataGridViewTextBoxColumn colMaterial = new DataGridViewTextBoxColumn { Name = "Material", DataPropertyName = "Material", HeaderText = "Material", Width = 350, DisplayIndex = 0 };
+            colMaterial.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgvInventario.Columns.Add(colMaterial);
+
+            DataGridViewTextBoxColumn colCantidad = new DataGridViewTextBoxColumn { Name = "Cantidad", DataPropertyName = "Cantidad", HeaderText = "Cantidad", Width = 120, DisplayIndex = 1 };
+            colCantidad.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvInventario.Columns.Add(colCantidad);
+
+            DataGridViewTextBoxColumn colCategoria = new DataGridViewTextBoxColumn { Name = "Categoria", DataPropertyName = "Categoria", HeaderText = "Categoría", Width = 200, DisplayIndex = 2 };
+            colCategoria.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgvInventario.Columns.Add(colCategoria);
+        }
+
         private void ConfigurarColumnas()
         {
+            tablaInventario.Columns.Clear();
             tablaInventario.Columns.Add("Material", typeof(string));
             tablaInventario.Columns.Add("Cantidad", typeof(int));
+            tablaInventario.Columns.Add("Categoria", typeof(string));
+            tablaInventario.DefaultView.Sort = "Cantidad ASC";
         }
 
-        // Simula los registros que en el futuro vendrán de SQLite
-        //(Módulo 8). Por ahora están hardcodeados.
         private void CargarDatosSimulados()
         {
-            tablaInventario.Rows.Add("Acrílico Polimetilmetacrilato", 45);
-            tablaInventario.Rows.Add("Placas de Vidrio Templado", 8);
-            tablaInventario.Rows.Add("Sustrato Botánico", 120);
-            tablaInventario.Rows.Add("Reactivos Secuencia ADN", 4);
-            tablaInventario.Rows.Add("Guantes de Nitrilo (Caja x100)", 25);
-            tablaInventario.Rows.Add("Jeringas Estériles 10ml", 3);
-            tablaInventario.Rows.Add("Alcohol Isopropílico (Litros)", 60);
-            tablaInventario.Rows.Add("Puntas para Micropipeta", 0);
+            tablaInventario.Rows.Add("Acrílico Polimetilmetacrilato", 45, "Estructural");
+            tablaInventario.Rows.Add("Placas de Vidrio Templado", 8, "Estructural");
+            tablaInventario.Rows.Add("Sustrato Botánico", 120, "Laboratorio");
         }
 
-        // Colores,ETC.
         private void EstilizarGrid()
         {
             dgvInventario.EnableHeadersVisualStyles = false;
             dgvInventario.BackgroundColor = Color.FromArgb(30, 30, 30);
             dgvInventario.BorderStyle = BorderStyle.None;
-            dgvInventario.GridColor = Color.FromArgb(60, 60, 60);
-            dgvInventario.RowHeadersVisible = false;
-            dgvInventario.AllowUserToAddRows = false;
-            dgvInventario.AllowUserToDeleteRows = false;
-            dgvInventario.ReadOnly = true;
-
-            dgvInventario.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48);
-            dgvInventario.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvInventario.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvInventario.ColumnHeadersHeight = 35;
-
+            dgvInventario.DefaultCellStyle.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular);
+            dgvInventario.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             dgvInventario.DefaultCellStyle.BackColor = Color.FromArgb(37, 37, 38);
             dgvInventario.DefaultCellStyle.ForeColor = Color.Gainsboro;
             dgvInventario.DefaultCellStyle.SelectionBackColor = Color.DarkCyan;
             dgvInventario.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgvInventario.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F);
-            dgvInventario.RowTemplate.Height = 30;
-
-            if (dgvInventario.Columns["Material"] != null)
-                dgvInventario.Columns["Material"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //dgvInventario.Columns["Material"].Width = 550;
-
-            if (dgvInventario.Columns["Cantidad"] != null)
-                dgvInventario.Columns["Cantidad"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                dgvInventario.Columns["Cantidad"].Width = 150;
-
+            dgvInventario.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48);
+            dgvInventario.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         }
 
-        // ============================================================
-        // LÓGICA PRINCIPAL: Reemplaza el "criterio visual" del analista
-        // ============================================================
-        //   - Cantidad <= 1   -> Stock CRÍTICO (rojo oscuro)
-        //   - Cantidad < 10   -> Stock BAJO (naranja)
-        //   - Cantidad >= 10  -> Stock saludable (sin alerta)
-        // ============================================================
+        private void dgvInventario_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvInventario.CurrentRow != null && dgvInventario.CurrentRow.DataBoundItem is DataRowView fila)
+            {
+                txtNombreInsumo.Text = fila["Material"].ToString();
+                txtCantidad.Text = fila["Cantidad"].ToString();
+                txtCategoria.Text = fila["Categoria"].ToString();
+            }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNombreInsumo.Text) || string.IsNullOrWhiteSpace(txtCantidad.Text) || string.IsNullOrWhiteSpace(txtCategoria.Text))
+            {
+                MessageBox.Show("¡Atención! Para registrar un nuevo insumo, es obligatorio completar todos los campos.\n\nPor favor, verifique los datos y vuelva a intentar.", "Campo Incompleto - GenVault C.A.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            foreach (DataRow row in tablaInventario.Rows)
+            {
+                if (row["Material"].ToString().Equals(txtNombreInsumo.Text.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("El material ya existe en el sistema. Utilice el botón 'Modificar' para ajustar existencias.", "Material Duplicado - GenVault C.A.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
+            if (!int.TryParse(txtCantidad.Text, out int cant)) { MessageBox.Show("Cantidad inválida. Ingrese solo números enteros.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            tablaInventario.Rows.Add(txtNombreInsumo.Text.Trim(), cant, txtCategoria.Text.Trim());
+            LimpiarCajas();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            // VALIDACIÓN CRÍTICA: Verificamos que realmente haya una fila seleccionada en la interfaz
+            if (dgvInventario.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Por favor, seleccione un registro de la tabla haciendo clic en él antes de modificar.",
+                                "Sin Selección - GenVault C.A.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (dgvInventario.CurrentRow != null && dgvInventario.CurrentRow.DataBoundItem is DataRowView fila)
+            {
+                if (!int.TryParse(txtCantidad.Text, out int cant))
+                {
+                    MessageBox.Show("Cantidad inválida.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                fila["Material"] = txtNombreInsumo.Text.Trim();
+                fila["Cantidad"] = cant;
+                fila["Categoria"] = txtCategoria.Text.Trim();
+
+                MessageBox.Show("Registro actualizado correctamente.", "Éxito - GenVault C.A.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarCajas();
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvInventario.CurrentRow != null)
+            {
+                ((DataRowView)dgvInventario.CurrentRow.DataBoundItem).Delete();
+                LimpiarCajas();
+            }
+        }
+
+        private void LimpiarCajas()
+        {
+            dgvInventario.SelectionChanged -= dgvInventario_SelectionChanged;
+            txtNombreInsumo.Clear();
+            txtCantidad.Clear();
+            txtCategoria.Clear();
+            dgvInventario.ClearSelection();
+            dgvInventario.SelectionChanged += dgvInventario_SelectionChanged;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e) => LimpiarCajas();
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txtBuscar.Text.Trim();
+            tablaInventario.DefaultView.RowFilter = string.IsNullOrEmpty(filtro) ? "" : $"Material LIKE '%{filtro}%' OR Categoria LIKE '%{filtro}%'";
+        }
+
         private void btnAnalizarStock_Click(object sender, EventArgs e)
         {
-            int contadorCriticos = 0;
+            if (tablaInventario.Rows.Count == 0)
+            {
+                MessageBox.Show("El inventario no contiene materiales registrados para analizar.", "Inventario Vacío - GenVault C.A.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lblAlertas.Text = "⚠️ Inventario vacío.";
+                lblAlertas.ForeColor = Color.Yellow;
+                return;
+            }
 
+            int contadorCriticos = 0;
             foreach (DataGridViewRow fila in dgvInventario.Rows)
             {
-                if (fila.Cells["Cantidad"].Value == null) continue;
-
                 int cantidadStock = Convert.ToInt32(fila.Cells["Cantidad"].Value);
-
-                if (cantidadStock <= 1)
-                {
-                    // Stock crítico extremo -> Orden de Compra URGENTE
-                    fila.DefaultCellStyle.BackColor = Color.DarkRed;
-                    fila.DefaultCellStyle.ForeColor = Color.White;
-                    contadorCriticos++;
-                }
-                else if (cantidadStock < 10)
-                {
-                    // Stock bajo -> Sugerencia de Orden de Compra
-                    fila.DefaultCellStyle.BackColor = Color.DarkOrange;
-                    fila.DefaultCellStyle.ForeColor = Color.Black;
-                    contadorCriticos++;
-                }
-                else
-                {
-                    // Stock saludable -> se restaura el color normal
-                    // esto evita que quede pintado si el usuario
-                    // presiona el botón varias veces
-                    fila.DefaultCellStyle.BackColor = Color.FromArgb(37, 37, 38);
-                    fila.DefaultCellStyle.ForeColor = Color.Gainsboro;
-                }
+                if (cantidadStock <= 1) { fila.DefaultCellStyle.BackColor = Color.DarkRed; fila.DefaultCellStyle.ForeColor = Color.White; contadorCriticos++; }
+                else if (cantidadStock < 10) { fila.DefaultCellStyle.BackColor = Color.DarkOrange; fila.DefaultCellStyle.ForeColor = Color.Black; contadorCriticos++; }
+                else { fila.DefaultCellStyle.BackColor = Color.FromArgb(37, 37, 38); fila.DefaultCellStyle.ForeColor = Color.Gainsboro; }
             }
 
             ActualizarLabelAlertas(contadorCriticos);
             MostrarResumenOrdenCompra(contadorCriticos);
         }
 
-        // Actualiza el contador visual de alertas debajo del grid
         private void ActualizarLabelAlertas(int cantidadCriticos)
         {
-            if (cantidadCriticos == 0)
-            {
-                lblAlertas.Text = "✅ Inventario estable. No se requieren Órdenes de Compra.";
-                lblAlertas.ForeColor = Color.LightGreen;
-            }
-            else
-            {
-                lblAlertas.Text = "🔴 " + cantidadCriticos + " ítem(s) requieren Orden de Compra sugerida.";
-                lblAlertas.ForeColor = Color.OrangeRed;
-            }
+            lblAlertas.Text = cantidadCriticos == 0 ? "✅ Inventario estable." : $"🔴 {cantidadCriticos} ítem(s) requieren Orden de Compra.";
+            lblAlertas.ForeColor = cantidadCriticos == 0 ? Color.LightGreen : Color.OrangeRed;
         }
 
-        // Muestra el MessageBox simulando la notificación
-        // que en un sistema real se le enviaría al departamento de Compras.
-        private void MostrarResumenOrdenCompra(int cantidadCriticos)
+        private void MostrarResumenOrdenCompra(int contador)
         {
-            if (cantidadCriticos == 0)
-            {
-                MessageBox.Show(
-                    "El inventario se encuentra en niveles saludables.\nNo se generaron órdenes de compra.",
-                    "Análisis de Stock - GenVault C.A.",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
-            else
-            {
-                MessageBox.Show(
-                    "Se han generado " + cantidadCriticos + " sugerencia(s) de Orden de Compra.\n\n" +
-                    "Revise las filas resaltadas en el inventario para más detalle.",
-                    "Análisis de Stock - GenVault C.A.",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-            }
-        }
-
-        private void dgvInventario_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void lblAlertas_Click(object sender, EventArgs e)
-        {
-
+            MessageBox.Show(contador == 0 ? "Inventario en niveles saludables." : $"Se han detectado {contador} insumos en niveles bajos/críticos. Revise el resaltado en pantalla.", "Análisis de Stock - GenVault C.A.", MessageBoxButtons.OK, contador == 0 ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
         }
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            // 1. Abrimos la ventana típica de Windows para "Guardar archivo como..."
-            SaveFileDialog ventanaGuardar = new SaveFileDialog();
-            ventanaGuardar.Filter = "Archivo CSV (*.csv)|*.csv";
-            ventanaGuardar.Title = "Guardar Sugerencia de Orden de Compra";
-            ventanaGuardar.FileName = "OrdenCompra_GenVault_" + DateTime.Now.ToString("ddMMyyyy");
-
-            // 2. Si el usuario elige una ruta y le da a "Guardar"...
-            if (ventanaGuardar.ShowDialog() == DialogResult.OK)
+            SaveFileDialog sfd = new SaveFileDialog { Filter = "CSV (*.csv)|*.csv", FileName = "OrdenCompra_" + DateTime.Now.ToString("ddMMyyyy") };
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                try
+                using (StreamWriter sw = new StreamWriter(sfd.FileName, false, System.Text.Encoding.UTF8))
                 {
-                    // 3. Preparamos el constructor de texto para escribir el archivo
-                    using (StreamWriter escritor = new StreamWriter(ventanaGuardar.FileName, false, System.Text.Encoding.UTF8))
+                    sw.WriteLine("Material;Cantidad;Categoria");
+                    foreach (DataGridViewRow fila in dgvInventario.Rows)
                     {
-                        // Escribimos la cabecera del archivo
-                        escritor.WriteLine("Material;Cantidad_Actual;Estado");
-
-                        // 4. Recorremos toda la tabla (el DataGridView) fila por fila
-                        foreach (DataGridViewRow fila in dgvInventario.Rows)
-                        {
-                            if (fila.Cells["Cantidad"].Value != null)
-                            {
-                                string material = fila.Cells["Material"].Value.ToString();
-                                int cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value);
-
-                                // Solo exportamos los que necesitan compra (Críticos o Bajos)
-                                if (cantidad < 10)
-                                {
-                                    string estado = (cantidad <= 1) ? "CRITICO" : "BAJO";
-
-                                    // Escribimos la línea separada por comas (formato CSV)
-                                    // Cambia la coma por un punto y coma:
-                                    escritor.WriteLine($"{material};{cantidad};{estado}");
-                                }
-                            }
-                        }
+                        int cant = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+                        if (cant < 10) sw.WriteLine($"{fila.Cells["Material"].Value};{cant};{fila.Cells["Categoria"].Value}");
                     }
-
-                    // 5. Avisamos que fue un éxito
-                    MessageBox.Show("Orden de compra exportada exitosamente.", "Exportación GenVault", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al exportar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Exportación exitosa.", "GenVault C.A.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e) { if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true; }
+        private void dgvInventario_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void lblAlertas_Click(object sender, EventArgs e) { }
+        private void txtCantidad_TextChanged(object sender, EventArgs e) { }
+        private void txtNombreInsumo_TextChanged(object sender, EventArgs e) { }
     }
 }

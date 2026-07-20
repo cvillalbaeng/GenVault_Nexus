@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace GenVault_Nexus
 {
-    internal static class Program
+    static class Program
     {
         /// <summary>
         /// Punto de entrada principal para la aplicación.
@@ -16,6 +16,14 @@ namespace GenVault_Nexus
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // ========================================================
+            // INICIALIZACIÓN DEL MOTOR DE BASE DE DATOS (MÓDULO 8)
+            // Llama a la clase para crear el archivo .sqlite
+            // ========================================================
+            ConexionDB.InicializarDB();
+
+            // Arrancamos la interfaz gráfica principal
             Application.Run(new FormMain());
         }
     }
