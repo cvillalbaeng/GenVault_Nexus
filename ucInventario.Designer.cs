@@ -161,7 +161,7 @@ namespace GenVault_Nexus
             this.btnAgregar.BackColor = System.Drawing.Color.DarkCyan;
             this.btnAgregar.FlatAppearance.BorderSize = 0;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
             this.btnAgregar.Location = new System.Drawing.Point(169, 150);
             this.btnAgregar.Name = "btnAgregar";
@@ -173,11 +173,12 @@ namespace GenVault_Nexus
             // 
             // btnModificar
             // 
-            this.btnModificar.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnModificar.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnModificar.FlatAppearance.BorderSize = 0;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnModificar.ForeColor = System.Drawing.Color.White;
+            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnModificar.Location = new System.Drawing.Point(302, 150);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(138, 28);
@@ -188,10 +189,10 @@ namespace GenVault_Nexus
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.Red;
+            this.btnEliminar.BackColor = System.Drawing.Color.Firebrick;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
             this.btnEliminar.Location = new System.Drawing.Point(479, 150);
             this.btnEliminar.Name = "btnEliminar";
@@ -203,12 +204,12 @@ namespace GenVault_Nexus
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnLimpiar.BackColor = System.Drawing.Color.SlateGray;
             this.btnLimpiar.FlatAppearance.BorderSize = 0;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnLimpiar.ForeColor = System.Drawing.Color.White;
-            this.btnLimpiar.Location = new System.Drawing.Point(27, 150);
+            this.btnLimpiar.Location = new System.Drawing.Point(40, 150);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(98, 28);
             this.btnLimpiar.TabIndex = 14;
@@ -255,14 +256,14 @@ namespace GenVault_Nexus
             // lblBuscar
             // 
             this.lblBuscar.AutoSize = true;
-            this.lblBuscar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuscar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuscar.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblBuscar.Location = new System.Drawing.Point(546, 83);
+            this.lblBuscar.Location = new System.Drawing.Point(546, 89);
             this.lblBuscar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(52, 20);
+            this.lblBuscar.Size = new System.Drawing.Size(98, 17);
             this.lblBuscar.TabIndex = 19;
-            this.lblBuscar.Text = "Buscar";
+            this.lblBuscar.Text = "Buscar Material";
             // 
             // txtBuscar
             // 

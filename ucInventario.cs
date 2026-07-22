@@ -107,13 +107,22 @@ namespace GenVault_Nexus
             }
 
             if (!int.TryParse(txtCantidad.Text, out int cant)) { MessageBox.Show("Cantidad inválida. Ingrese solo números enteros.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            tablaInventario.Rows.Add(txtNombreInsumo.Text.Trim(), cant, txtCategoria.Text.Trim());
+
+            string materialNuevo = txtNombreInsumo.Text.Trim();
+            string categoriaNueva = txtCategoria.Text.Trim();
+
+            tablaInventario.Rows.Add(materialNuevo, cant, categoriaNueva);
+
+            // ========================================================
+            // REGISTRO DE AUDITORÍA: NUEVO MATERIAL
+            // ========================================================
+            Auditoria.Registrar("Logística e Inventario", "REGISTRO_MATERIAL", $"Se registró el insumo '{materialNuevo}' con cantidad {cant} y categoría '{categoriaNueva}'.");
+
             LimpiarCajas();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            // VALIDACIÓN CRÍTICA: Verificamos que realmente haya una fila seleccionada en la interfaz
             if (dgvInventario.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Por favor, seleccione un registro de la tabla haciendo clic en él antes de modificar.",
@@ -129,9 +138,17 @@ namespace GenVault_Nexus
                     return;
                 }
 
-                fila["Material"] = txtNombreInsumo.Text.Trim();
+                string materialModificado = txtNombreInsumo.Text.Trim();
+                string categoriaModificada = txtCategoria.Text.Trim();
+
+                fila["Material"] = materialModificado;
                 fila["Cantidad"] = cant;
-                fila["Categoria"] = txtCategoria.Text.Trim();
+                fila["Categoria"] = categoriaModificada;
+
+                // ========================================================
+                // REGISTRO DE AUDITORÍA: MODIFICACIÓN DE MATERIAL
+                // ========================================================
+                Auditoria.Registrar("Logística e Inventario", "MODIFICACION_MATERIAL", $"Se actualizaron los datos del material '{materialModificado}' (Cantidad: {cant}, Categoría: '{categoriaModificada}').");
 
                 MessageBox.Show("Registro actualizado correctamente.", "Éxito - GenVault C.A.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCajas();
@@ -140,9 +157,17 @@ namespace GenVault_Nexus
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dgvInventario.CurrentRow != null)
+            if (dgvInventario.CurrentRow != null && dgvInventario.CurrentRow.DataBoundItem is DataRowView fila)
             {
-                ((DataRowView)dgvInventario.CurrentRow.DataBoundItem).Delete();
+                string materialEliminado = fila["Material"].ToString();
+
+                fila.Delete();
+
+                // ========================================================
+                // REGISTRO DE AUDITORÍA: ELIMINACIÓN DE MATERIAL
+                // ========================================================
+                Auditoria.Registrar("Logística e Inventario", "ELIMINACION_MATERIAL", $"Se eliminó del inventario el material '{materialEliminado}'.");
+
                 LimpiarCajas();
             }
         }
@@ -213,6 +238,12 @@ namespace GenVault_Nexus
                         if (cant < 10) sw.WriteLine($"{fila.Cells["Material"].Value};{cant};{fila.Cells["Categoria"].Value}");
                     }
                 }
+
+                // ========================================================
+                // REGISTRO DE AUDITORÍA: EXPORTACIÓN DE ORDEN DE COMPRA
+                // ========================================================
+                Auditoria.Registrar("Logística e Inventario", "EXPORTACION_ORDEN_COMPRA", "Se generó y exportó la orden de compra de materiales críticos en formato CSV.");
+
                 MessageBox.Show("Exportación exitosa.", "GenVault C.A.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
