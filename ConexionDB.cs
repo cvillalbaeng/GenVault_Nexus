@@ -27,15 +27,15 @@ namespace GenVault_Nexus
                 {
                     conexion.Open();
 
-                    // 1. Tabla para el Módulo 2 (Login)
+                    // 1. Tabla para el Módulo de Usuarios (Mantiene el script original de tu compañero)
                     string tablaUsuarios = "CREATE TABLE Usuarios (Id INTEGER PRIMARY KEY AUTOINCREMENT, NombreUsuario TEXT, Password TEXT, Rol TEXT)";
                     new SQLiteCommand(tablaUsuarios, conexion).ExecuteNonQuery();
 
-                    // 2. Tabla para el Módulo 3 (Bioinformática)
-                    string tablaSujetos = "CREATE TABLE Especimenes (Id INTEGER PRIMARY KEY AUTOINCREMENT, CodigoSujeto TEXT, Especie TEXT, NivelMutacion TEXT, UnidadAsignada TEXT)";
-                    new SQLiteCommand(tablaSujetos, conexion).ExecuteNonQuery();
+                    // 2. Tabla de Especimenes sincronizada con ucBioinformatica.cs
+                    string tablaEspecimenes = "CREATE TABLE Especimenes (Codigo TEXT PRIMARY KEY, Nombre TEXT, Especie TEXT, Estado TEXT, Fecha TEXT)";
+                    new SQLiteCommand(tablaEspecimenes, conexion).ExecuteNonQuery();
 
-                    // Insertamos un usuario administrador "semilla" para que Luís pueda probar su Login
+                    // Insertamos un usuario administrador "semilla" de prueba
                     string insertAdmin = "INSERT INTO Usuarios (NombreUsuario, Password, Rol) VALUES ('investigador', 'genvault123', 'Investigador Jefe')";
                     new SQLiteCommand(insertAdmin, conexion).ExecuteNonQuery();
                 }

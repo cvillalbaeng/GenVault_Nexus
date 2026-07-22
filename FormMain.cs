@@ -14,15 +14,6 @@ namespace GenVault_Nexus
 {
     public partial class FormMain : Form
     {
-        // TODO: Integración BD (Logística) - Reemplazar la carga de datos manual (Mock) en el DataTable por la consulta SQL hacia ConexionDB.cs cuando el backend (SQLite) esté integrado.
-        // TODO: Integrar conexión SQL a la base de datos para validar credenciales reales y extraer el departamento del usuario dinámicamente.
-        // TODO: UI/UX - Crear un formulario base personalizado (CustomMessageBox) para reemplazar las alertas genéricas de Windows y unificar el diseño con el Dark Mode.
-        // TODO: UI/UX - Diseñar e integrar el isotipo/logo institucional de GenVault Nexus en la pantalla de Login y en la cabecera del FormMain.
-        // TODO: Seguridad (Audit Trail) - Crear método global en C# y tabla en SQL para registrar TODO evento crítico. Debe capturar: Fecha/Hora, Usuario logueado, Módulo (Login, Emergencias, Telemetría, etc.) y Acción detallada (ej. "Inició sesión", "Activó simulacro", "Cambió temperatura").
-        // TODO: Panel de Admin (Diseño) - Diseñar la ficha de registro de usuarios incluyendo un PictureBox para cargar la Fotografía de perfil y campos de Cédula/Cargo. La Base de Datos debe estar preparada para almacenar imágenes (VARBINARY) o sus rutas.
-        // TODO: Gestión de Usuarios (CRUD) - Desarrollar la lógica en el panel de Administrador para Crear, Modificar, Inhabilitar y Listar usuarios del sistema. Debe incluir la asignación dinámica de Roles/Departamentos y la encriptación segura de contraseñas al insertarlas en la base de datos.
-
-        // Importación de librerías de Windows para mover pantallas sin bordes
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
@@ -33,11 +24,39 @@ namespace GenVault_Nexus
         {
             InitializeComponent();
 
-            // 1. Al arrancar el programa, cerramos todas las puertas
+            // ====================================================================
+            // INICIALIZACIÓN DE BASE DE DATOS SQLITE (MÓDULO DE EQUIPO)
+            // ====================================================================
+            ConexionDB.InicializarDB();
+
+            // ====================================================================
+            // SOLUCIÓN DE DIMENSIONES (Adaptable para Monitores y Laptops)
+            // ====================================================================
+            this.MinimumSize = new Size(1024, 700);
+            this.AutoScroll = true;
+            this.WindowState = FormWindowState.Maximized;
+
+            // Al arrancar el programa, cerramos puertas y ocultamos botones
             BloquearMenu();
 
-            // 2. Obligamos a mostrar la taquilla de Ciberseguridad
+            // Obligamos a mostrar la taquilla de inicio de sesión
             CargarPantallaInicial();
+        }
+
+        // ====================================================================
+        // MÉTODO DE JERARQUÍA REQUERIDO POR LA MATRIZ DE SEGURIDAD
+        // ====================================================================
+        private int ObtenerNivel(string departamento, string cargo)
+        {
+            if (departamento == "Ciberseguridad") return 1; // Nivel 1: Administrador / Superusuario
+
+            if (departamento == "Dirección de Seguridad")
+            {
+                if (cargo == "Director de Seguridad") return 2; // Nivel 2
+                if (cargo == "Supervisor de Operaciones de Control") return 3; // Nivel 3
+            }
+
+            return 4; // Nivel 4: Operativos
         }
 
         // ====================================================================
@@ -45,30 +64,30 @@ namespace GenVault_Nexus
         // ====================================================================
         private void BloquearMenu()
         {
-            // Apagamos todos los botones de los departamentos existentes
-            btnBioinformatica.Enabled = true;
-            btnBaseDeDatos.Enabled = true;
-            btnTelemetria.Enabled = true;
-            btnLogistica.Enabled = true;
-            btnMonitor.Enabled = true;
-            btnEmergencia.Enabled = true;
+            // Ocultamos TODOS los botones del panel lateral (Visibilidad en False)
+            btnBioinformatica.Visible = false;
+            btnBaseDeDatos.Visible = false;
+            btnTelemetria.Visible = false;
+            btnLogistica.Visible = false;
+            btnMonitor.Visible = false;
+            btnEmergencia.Visible = false;
+
+            if (btnUsuarios != null)
+            {
+                btnUsuarios.Visible = false;
+            }
+
+            // Ocultamos también el botón de Cerrar Sesión en la pantalla de Login
+            btnCerrarSesion.Visible = false;
         }
 
-        // Método público para que el Login avise que la sesión fue exitosa
         public void IniciarSesion(string nombreUsuario, string rol)
         {
-            // 1. Actualizamos la barra de estado con los datos reales
             toolStripStatusLabel1.Text = $"Usuario: {nombreUsuario} [{rol}]";
             toolStripStatusLabel2.Text = "Servidor: Bio-Core Alpha (Conectado)";
             toolStripStatusLabel3.Text = "Módulo Activo: Panel de Control";
 
-            // 2. Desbloqueamos los botones del menú lateral (si tienes un método DesbloquearMenu, llámalo aquí)
-            // DesbloquearMenu(); 
-
-            // 3. Limpiamos el contenedor central para quitar el Login
             pnlContenedor.Controls.Clear();
-
-            // 4. (Opcional) Podemos cargar una pantalla de bienvenida o dejar el fondo limpio
             lblCabecera.Text = "GenVault > Panel de Control";
         }
 
@@ -77,58 +96,85 @@ namespace GenVault_Nexus
             lblCabecera.Text = "GenVault > Autenticación de Usuario";
             pnlContenedor.Controls.Clear();
 
-            // Creamos el módulo de login y le conectamos el cable de validación
             ucLogin moduloLogin = new ucLogin();
             moduloLogin.LoginExitoso += ModuloLogin_LoginExitoso;
             MostrarModulo(moduloLogin);
         }
 
-        // El sistema llama automáticamente a esto cuando el login es correcto
         private void ModuloLogin_LoginExitoso(object sender, EventArgs e)
         {
-            // Extraemos la información del usuario
             ucLogin loginAprobado = (ucLogin)sender;
             string nombre = loginAprobado.NombreUsuarioLogueado;
             string departamento = loginAprobado.DepartamentoLogueado;
 
-            // Actualizamos la barra de estado inferior
             lblCabecera.Text = $"GenVault > {departamento}";
             toolStripStatusLabel1.Text = $"Usuario: {nombre} (Conectado)";
             toolStripStatusLabel2.Text = "Servidor: Bio-Core Alpha (En Línea)";
             toolStripStatusLabel3.Text = $"Módulo Activo: {departamento}";
 
-            // LÓGICA DE DESBLOQUEO POR DEPARTAMENTOS REALES
-            if (departamento == "Bioinformática")
+            // Al iniciar sesión exitosamente, mostramos el botón de Cerrar Sesión
+            btnCerrarSesion.Visible = true;
+
+            // ====================================================================
+            // MATRIZ DE SEGURIDAD: LÓGICA DE VISIBILIDAD DINÁMICA POR DEPARTAMENTOS
+            // ====================================================================
+
+            string cargoActual = GenVault_Nexus.SesionGlobal.Cargo;
+            int nivelActual = ObtenerNivel(departamento, cargoActual);
+
+            // ====================================================================
+            // 1. SUPERUSUARIO (ADMINISTRADOR DE RED / CIBERSEGURIDAD - NIVEL 1)
+            // ====================================================================
+            if (nivelActual == 1 || departamento == "Ciberseguridad")
             {
-                btnBioinformatica.Enabled = true;
+                // EL ADMIN TIENE ACCESO ABSOLUTO A TODOS LOS MÓDULOS
+                btnMonitor.Visible = true;
+                btnEmergencia.Visible = true;
+                btnBaseDeDatos.Visible = true;
+                btnLogistica.Visible = true;
+                btnBioinformatica.Visible = true;
+                btnTelemetria.Visible = true;
+                if (btnUsuarios != null) btnUsuarios.Visible = true;
+
+                MostrarModulo(new ucMonitorTI()); // Inicia viendo el Monitor TI
+                return;
+            }
+
+            // ====================================================================
+            // 2. PERMISOS GRANULARES PARA LOS DEMÁS CARGOS (Niveles 2, 3 y 4)
+            // ====================================================================
+            if (departamento == "Dirección de Seguridad")
+            {
+                btnEmergencia.Visible = true;
+                btnMonitor.Visible = true;
+                if (btnUsuarios != null) btnUsuarios.Visible = true;
+
+                MostrarModulo(new ucUsuario()); // Inicia en el gestor de personal
+            }
+            else if (departamento == "Logística e Inventario")
+            {
+                btnLogistica.Visible = true;
+                MostrarModulo(new ucInventario());
+            }
+            else if (departamento == "Bioinformática")
+            {
+                btnBioinformatica.Visible = true;
                 MostrarModulo(new ucBioinformatica());
             }
-            else if (departamento == "Ciberseguridad")
+            else if (departamento == "Unidad de Telemetría")
             {
-                // Al administrador de red le damos acceso al Monitor TI y a Emergencias
-                btnMonitor.Enabled = true;
-                btnEmergencia.Enabled = true;
-                MostrarModulo(new ucMonitorTI());
-            }
-            // Agregamos los demás para cuando la Base de Datos esté lista:
-            else if (departamento == "Base de Datos")
-            {
-                btnBaseDeDatos.Enabled = true;
-            }
-            else if (departamento == "Telemetría")
-            {
-                btnTelemetria.Enabled = true;
+                btnTelemetria.Visible = true;
                 MostrarModulo(new ucTelemetria());
             }
-            else if (departamento == "Logística")
+            else
             {
-                btnLogistica.Enabled = true;
-                MostrarModulo(new ucInventario());
+                pnlContenedor.Controls.Clear();
+                MessageBox.Show("Advertencia: No se han configurado permisos visuales para este departamento.", "Aviso del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         // ====================================================================
-        // FUNCIÓN MAESTRA: Limpia el panel central e incrusta el módulo pedido
+        // FUNCIÓN MAESTRA
         // ====================================================================
         private void MostrarModulo(System.Windows.Forms.UserControl moduloNuevo)
         {
@@ -141,15 +187,12 @@ namespace GenVault_Nexus
         // ====================================================================
         // EVENTOS DE BOTONES Y CONTROLES DE LA INTERFAZ
         // ====================================================================
-        private void btnlogin_Click(object sender, EventArgs e)
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            // Como el sistema arranca con Login, este botón ahora sirve para "Cerrar Sesión"
-            // Borramos los datos de la barra inferior
             toolStripStatusLabel1.Text = "Usuario: Esperando inicio de sesión...";
             toolStripStatusLabel2.Text = "Servidor: Bio-Core Alpha (Desconectado)";
             toolStripStatusLabel3.Text = "Módulo Activo: Ninguno";
 
-            // Bloqueamos las puertas y volvemos a la pantalla inicial
             BloquearMenu();
             CargarPantallaInicial();
         }
@@ -210,10 +253,10 @@ namespace GenVault_Nexus
 
         private void btnBaseDeDatos_Click(object sender, EventArgs e)
         {
-            lblCabecera.Text = "GenVault > Base de Datos";
-            toolStripStatusLabel3.Text = "Módulo Activo: Base de Datos";
-            pnlContenedor.Controls.Clear();
-            //MostrarModulo(new ucBaseDatos());
+            lblCabecera.Text = "GenVault > Mantenimiento y Respaldos";
+            toolStripStatusLabel3.Text = "Módulo Activo: Mantenimiento DB";
+
+            MostrarModulo(new ucBaseDatos());
         }
 
         private void btnTelemetria_Click(object sender, EventArgs e)
@@ -230,7 +273,13 @@ namespace GenVault_Nexus
             MostrarModulo(new ucInventario());
         }
 
-        // Métodos vacíos de diseño dejados intactos por precaución
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            lblCabecera.Text = "GenVault > Gestión de Personal y Seguridad";
+            toolStripStatusLabel3.Text = "Módulo Activo: Gestión de Personal";
+            MostrarModulo(new ucUsuario());
+        }
+
         private void pnlHeader_Paint(object sender, PaintEventArgs e) { }
         private void panel1_Paint(object sender, PaintEventArgs e) { }
     }

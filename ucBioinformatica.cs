@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace GenVault_Nexus
 {
     public partial class ucBioinformatica : UserControl
     {
-        private DataTable tablaEspecimenes;
+        private DataTable tablaEspecimenes = new DataTable();
         private Random random = new Random();
 
         public ucBioinformatica()
@@ -19,8 +22,7 @@ namespace GenVault_Nexus
 
         private void ucBioinformatica_Load(object sender, EventArgs e)
         {
-            InicializarTabla();
-            dgvEspecimenes.DataSource = tablaEspecimenes;
+            CargarDatosDesdeSQLite();
             ConfigurarEstiloTabla();
             dgvEspecimenes.SelectionChanged += dgvEspecimenes_SelectionChanged;
 
@@ -29,16 +31,62 @@ namespace GenVault_Nexus
             btnEliminar.Click += btnEliminar_Click;
             btnLimpiar.Click += btnLimpiar_Click;
             btnEjecutarPAM.Click += btnEjecutarPAM_Click;
+
+            // Configuración inicial del reproductor
+            axWindowsMediaPlayer1.uiMode = "none";
+            axWindowsMediaPlayer1.stretchToFit = true;
+            axWindowsMediaPlayer1.Visible = false; // Inicia oculto
+
+            // CORRECCIÓN VITAL: Desactivar el auto-inicio automático del motor de Windows Media
+            try { axWindowsMediaPlayer1.settings.autoStart = false; } catch { }
+
+            // Suscripción estricta para apagar y limpiar el audio si el usuario sale del módulo
+            this.VisibleChanged += ucBioinformatica_VisibleChanged;
         }
 
-        private void InicializarTabla()
+        private void ucBioinformatica_VisibleChanged(object sender, EventArgs e)
         {
-            tablaEspecimenes = new DataTable();
-            tablaEspecimenes.Columns.Add("Codigo", typeof(string));
-            tablaEspecimenes.Columns.Add("Nombre", typeof(string));
-            tablaEspecimenes.Columns.Add("Especie", typeof(string));
-            tablaEspecimenes.Columns.Add("Estado", typeof(string));
-            tablaEspecimenes.Columns.Add("Fecha", typeof(string));
+            if (!this.Visible)
+            {
+                DetenerYLimpiarVideo();
+            }
+        }
+
+        private void DetenerYLimpiarVideo()
+        {
+            try
+            {
+                if (axWindowsMediaPlayer1 != null)
+                {
+                    axWindowsMediaPlayer1.Ctlcontrols.stop();
+                    axWindowsMediaPlayer1.URL = string.Empty; // Limpia la ruta para liberar el archivo de audio/video por completo
+                    axWindowsMediaPlayer1.Visible = false;
+                }
+            }
+            catch { }
+        }
+
+        private void CargarDatosDesdeSQLite()
+        {
+            try
+            {
+                using (SQLiteConnection conexion = ConexionDB.ObtenerConexion())
+                {
+                    conexion.Open();
+                    string query = "SELECT Codigo, Nombre, Especie, Estado, Fecha FROM Especimenes";
+                    using (SQLiteDataAdapter adaptador = new SQLiteDataAdapter(query, conexion))
+                    {
+                        tablaEspecimenes.Clear();
+                        tablaEspecimenes = new DataTable();
+                        adaptador.Fill(tablaEspecimenes);
+                        dgvEspecimenes.DataSource = tablaEspecimenes;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al sincronizar con el servidor Bio-Core Alpha (SQLite): " + ex.Message, "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ConfigurarEstiloTabla()
@@ -52,6 +100,8 @@ namespace GenVault_Nexus
             dgvEspecimenes.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(36, 42, 51);
             dgvEspecimenes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgvEspecimenes.EnableHeadersVisualStyles = false;
+            dgvEspecimenes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvEspecimenes.ScrollBars = ScrollBars.Both;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -80,27 +130,45 @@ namespace GenVault_Nexus
                     return;
                 }
 
-                foreach (DataRow fila in tablaEspecimenes.Rows)
+                string codigoEsp = txtCodigo.Text.Trim();
+                string nombreEsp = txtNombre.Text.Trim();
+                string especieEsp = txtEspecie.Text.Trim();
+                string estadoEsp = cmbEstado.Text;
+                string fechaEsp = dtpFecha.Value.ToShortDateString();
+
+                using (SQLiteConnection conexion = ConexionDB.ObtenerConexion())
                 {
-                    if (fila["Codigo"].ToString().Trim().ToUpper() == txtCodigo.Text.Trim().ToUpper())
+                    conexion.Open();
+                    string query = "INSERT INTO Especimenes (Codigo, Nombre, Especie, Estado, Fecha) VALUES (@codigo, @nombre, @especie, @estado, @fecha)";
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conexion))
                     {
-                        MessageBox.Show("ALERTA: Este código ya existe.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        LimpiarCampos();
-                        return;
+                        cmd.Parameters.AddWithValue("@codigo", codigoEsp);
+                        cmd.Parameters.AddWithValue("@nombre", nombreEsp);
+                        cmd.Parameters.AddWithValue("@especie", especieEsp);
+                        cmd.Parameters.AddWithValue("@estado", estadoEsp);
+                        cmd.Parameters.AddWithValue("@fecha", fechaEsp);
+                        cmd.ExecuteNonQuery();
                     }
                 }
 
-                tablaEspecimenes.Rows.Add(
-                    txtCodigo.Text,
-                    txtNombre.Text,
-                    txtEspecie.Text,
-                    cmbEstado.Text,
-                    dtpFecha.Value.ToShortDateString()
-                );
+                Auditoria.Registrar("Bioinformática", "REGISTRO_ESPECIMEN", $"Se registró el espécimen '{nombreEsp}' (Código: {codigoEsp}, Especie: {especieEsp}).");
 
+                CargarDatosDesdeSQLite();
                 LimpiarCampos();
-                // Agrega esta línea para quitar la selección azul de la tabla tras agregar
                 dgvEspecimenes.ClearSelection();
+                MessageBox.Show("Espécimen registrado y almacenado con éxito en el Bio-Core Alpha.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("ALERTA: Ya existe un espécimen registrado con este código en la base de datos.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Error de SQLite: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             finally
             {
@@ -116,7 +184,6 @@ namespace GenVault_Nexus
                 return;
             }
 
-            // 1. Validar campos vacíos
             if (string.IsNullOrWhiteSpace(txtCodigo.Text) ||
                 string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtEspecie.Text))
@@ -125,7 +192,6 @@ namespace GenVault_Nexus
                 return;
             }
 
-            // 2. Validar Estado
             if (cmbEstado.SelectedIndex == -1 || string.IsNullOrWhiteSpace(cmbEstado.Text))
             {
                 MessageBox.Show("Debe seleccionar un estado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -133,26 +199,38 @@ namespace GenVault_Nexus
             }
 
             DataRowView filaActual = (DataRowView)dgvEspecimenes.CurrentRow.DataBoundItem;
+            string codigoOriginal = filaActual["Codigo"].ToString();
+            string codigoMod = txtCodigo.Text.Trim();
 
-            // 3. RADAR ANTI-DUPLICADOS (Versión Modificar)
-            foreach (DataRow fila in tablaEspecimenes.Rows)
+            try
             {
-                // Verifica si el código existe, PERO ignora la fila que estamos modificando
-                if (fila["Codigo"].ToString().Trim().ToUpper() == txtCodigo.Text.Trim().ToUpper() && fila != filaActual.Row)
+                using (SQLiteConnection conexion = ConexionDB.ObtenerConexion())
                 {
-                    MessageBox.Show("ALERTA: Ya existe OTRO espécimen usando este código.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return; // Aborta la modificación
+                    conexion.Open();
+                    string query = "UPDATE Especimenes SET Codigo = @nuevoCodigo, Nombre = @nombre, Especie = @especie, Estado = @estado, Fecha = @fecha WHERE Codigo = @codigoOriginal";
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@nuevoCodigo", codigoMod);
+                        cmd.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
+                        cmd.Parameters.AddWithValue("@especie", txtEspecie.Text.Trim());
+                        cmd.Parameters.AddWithValue("@estado", cmbEstado.Text);
+                        cmd.Parameters.AddWithValue("@fecha", dtpFecha.Value.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@codigoOriginal", codigoOriginal);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+
+                Auditoria.Registrar("Bioinformática", "MODIFICACION_ESPECIMEN", $"Se actualizaron los datos del espécimen con código '{codigoMod}'.");
+
+                CargarDatosDesdeSQLite();
+                LimpiarCampos();
+                MessageBox.Show("Espécimen modificado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            // 4. Si todo está en orden, aplicamos los cambios
-            filaActual["Codigo"] = txtCodigo.Text;
-            filaActual["Nombre"] = txtNombre.Text;
-            filaActual["Especie"] = txtEspecie.Text;
-            filaActual["Estado"] = cmbEstado.Text;
-            filaActual["Fecha"] = dtpFecha.Value.ToShortDateString();
-
-            LimpiarCampos();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -163,12 +241,37 @@ namespace GenVault_Nexus
                 return;
             }
 
-            DialogResult confirmacion = MessageBox.Show("¿Seguro que deseas eliminar este espécimen?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult confirmacion = MessageBox.Show("¿Seguro que deseas eliminar este espécimen de la base de datos?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirmacion == DialogResult.Yes)
             {
                 DataRowView fila = (DataRowView)dgvEspecimenes.CurrentRow.DataBoundItem;
-                fila.Row.Delete();
-                LimpiarCampos();
+                string codigoEliminado = fila["Codigo"].ToString();
+                string nombreEliminado = fila["Nombre"].ToString();
+
+                try
+                {
+                    using (SQLiteConnection conexion = ConexionDB.ObtenerConexion())
+                    {
+                        conexion.Open();
+                        string query = "DELETE FROM Especimenes WHERE Codigo = @codigo";
+
+                        using (SQLiteCommand cmd = new SQLiteCommand(query, conexion))
+                        {
+                            cmd.Parameters.AddWithValue("@codigo", codigoEliminado);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    Auditoria.Registrar("Bioinformática", "ELIMINACION_ESPECIMEN", $"Se eliminó el espécimen '{nombreEliminado}' (Código: {codigoEliminado}).");
+
+                    CargarDatosDesdeSQLite();
+                    LimpiarCampos();
+                    MessageBox.Show("Registro eliminado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -179,9 +282,8 @@ namespace GenVault_Nexus
 
         private void LimpiarCampos()
         {
-           dgvEspecimenes.SelectionChanged -= dgvEspecimenes_SelectionChanged;
+            dgvEspecimenes.SelectionChanged -= dgvEspecimenes_SelectionChanged;
 
-            // Lipiamos todas las cajas
             txtCodigo.Clear();
             txtNombre.Clear();
             txtEspecie.Clear();
@@ -216,17 +318,27 @@ namespace GenVault_Nexus
             txtNombre.Text = fila["Nombre"].ToString();
             txtEspecie.Text = fila["Especie"].ToString();
             cmbEstado.Text = fila["Estado"].ToString();
+            if (DateTime.TryParse(fila["Fecha"].ToString(), out DateTime fechaParsed))
+            {
+                dtpFecha.Value = fechaParsed;
+            }
         }
 
         private async void btnEjecutarPAM_Click(object sender, EventArgs e)
         {
-            if (tablaEspecimenes == null || tablaEspecimenes.Rows.Count == 0)
+            // VALIDACIÓN ESTRICTA: Se requieren al menos 2 especímenes registrados para ejecutar el PAM
+            if (tablaEspecimenes == null || tablaEspecimenes.Rows.Count < 2 || dgvEspecimenes.Rows.Count < 2)
             {
-                MessageBox.Show("No hay especímenes registrados. Debe agregar al menos uno para ejecutar el proceso PAM.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Se requieren al menos 2 especímenes registrados en la base de datos para ejecutar el proceso PAM.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             btnEjecutarPAM.Enabled = false;
+
+            // BLINDAJE DE AUDIO: Detenemos y limpiamos el reproductor agresivamente ANTES de empezar el proceso.
+            // Así garantizamos que no haya ningún video residual en caché intentando reproducirse si el resultado es negativo.
+            DetenerYLimpiarVideo();
+
             pbPAM.Value = 0;
             lblResultadoPAM.Text = "Resultado: Ejecutando...";
 
@@ -235,30 +347,49 @@ namespace GenVault_Nexus
                 for (int i = 0; i <= 100; i += 5)
                 {
                     pbPAM.Value = i;
-                    await System.Threading.Tasks.Task.Delay(80);
+                    await Task.Delay(80);
                 }
 
                 string[] resultadosPosibles =
                 {
-            "Mutación estable detectada",
-            "Fallo genético crítico",
-            "Sin cambios significativos",
-            "Mutación beneficiosa aislada",
-            "Secuencia corrupta - reintentar"
-        };
+                    "Mutación beneficiosa aislada",
+                    "Fallo genético crítico",
+                    "Sin cambios significativos",
+                    "Mutación estable detectada",
+                    "Secuencia corrupta - reintentar"
+                };
 
                 string resultado = resultadosPosibles[random.Next(resultadosPosibles.Length)];
                 lblResultadoPAM.Text = "Resultado: " + resultado;
+
+                // ========================================================
+                // CINEMÁTICA CONDICIONAL: ÉXITO (BENEFICIOSA O ESTABLE)
+                // ========================================================
+                if (resultado == "Mutación beneficiosa aislada" || resultado == "Mutación estable detectada")
+                {
+                    string rutaVideo = Path.Combine(Application.StartupPath, "video 1 ejecutar PAM .mp4");
+
+                    if (File.Exists(rutaVideo))
+                    {
+                        axWindowsMediaPlayer1.Visible = true;
+                        axWindowsMediaPlayer1.BringToFront();
+
+                        axWindowsMediaPlayer1.URL = rutaVideo;
+                        axWindowsMediaPlayer1.Ctlcontrols.play();
+
+                        // Espera a que termine la reproducción antes de ocultarse automáticamente
+                        await Task.Delay(9000);
+
+                        DetenerYLimpiarVideo();
+                    }
+                }
+
+                Auditoria.Registrar("Bioinformática", "EJECUCION_PAM", $"Se ejecutó el Proceso Analítico Mutagénico (PAM) con resultado: '{resultado}'.");
             }
             finally
             {
                 btnEjecutarPAM.Enabled = true;
             }
-        }
-
-        private void dgvEspecimenes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
